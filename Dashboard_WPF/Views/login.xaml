@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="Dashboard_WPF.Views.login"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Dashboard_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="700
+             " Width="677">
+
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" >
+        <StackPanel Margin="20">
+            <TextBlock Text="شما نیاز دارید که وارد اکانت خود شوید" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
+            <TextBox materialDesign:HintAssist.Hint="نام کاربری" Margin="0 0 0 70" x:Name="UsernameBox"/>
+            <PasswordBox materialDesign:HintAssist.Hint="پسورد" Margin="0 0 0 70" x:Name="PasswordBox"/>
+            <Button Content="ورود" HorizontalAlignment="Center" materialDesign:ButtonAssist.CornerRadius="5"  Width="520" Click="LoginButton_Click" Height="48" Margin="0 100 0 0"/>
+            <TextBlock x:Name="txtinfo" Text="" FlowDirection="RightToLeft"  Foreground="Red" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
+        </StackPanel>
+    </materialDesign:Card>
+</UserControl>

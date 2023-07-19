@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Dashboard_WPF.Views.contact"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Dashboard_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="700
+             " Width="677">
+
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" >
+
+        <StackPanel Margin="20">
+            <TextBlock Text="ارسال پیام به استاد ها" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 90"/>
+            <ComboBox materialDesign:HintAssist.Hint=" استاد مورد نظر خود را انتخاب کنید" Margin="0 0 0 10"/>
+            <TextBox materialDesign:HintAssist.Hint="موضوع" Margin="0 0 0 10"/>
+            <TextBox materialDesign:HintAssist.Hint="متن پیام" Margin="0 0 0 50" Height="200"  VerticalScrollBarVisibility="Auto" MaxLines="30"/>
+            <Button Content="Send" materialDesign:ButtonAssist.CornerRadius="5"/>
+        </StackPanel>
+
+    </materialDesign:Card>
+
+</UserControl>
