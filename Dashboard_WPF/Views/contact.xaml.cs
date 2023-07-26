@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ using System.Windows.Shapes;
 
 namespace Dashboard_WPF.Views
 {
+  
+
     /// <summary>
     /// Interaction logic for contact.xaml
     /// </summary>
@@ -23,6 +26,42 @@ namespace Dashboard_WPF.Views
         public contact()
         {
             InitializeComponent();
+        }
+        Dictionary<string, string> iDictionary = new Dictionary<string, string>();
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            SqlConnection con =
+                new SqlConnection(
+                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+            con.Open();
+            SqlCommand userName = new SqlCommand("SELECT [teacherID],CONCAT([firstName],' ',[lastName]) FROM [CollegeProject].[dbo].[Teachers]", con);
+            SqlDataReader srd = userName.ExecuteReader();
+      
+            int counter = 0;
+           
+            while (srd.Read())
+            {
+                iDictionary[srd.GetValue(0).ToString()]= srd.GetValue(1).ToString();
+                cbTeacher.Items.Add(iDictionary[srd.GetValue(0).ToString()]);
+                counter++;
+            }
+
+         
+        }
+
+ 
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            string teacherName = cbTeacher.Text;
+            string teacherId = "";
+            foreach (KeyValuePair<string, string> VARIABLE in iDictionary)
+            {
+                if (VARIABLE.Value == teacherName)
+                    teacherId = VARIABLE.Key;
+            }
+
+            MessageBox.Show($"ID:{teacherId} name:{teacherName}\r\nموضوع:{txtSubject.Text}\r\nمتن: {txtText.Text}");
         }
     }
 }

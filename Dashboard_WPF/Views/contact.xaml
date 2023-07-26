@@ -6,16 +6,16 @@
              xmlns:local="clr-namespace:Dashboard_WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Height="700
-             " Width="677">
+             " Width="677" Loaded="UserControl_Loaded">
 
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" >
 
         <StackPanel Margin="20">
             <TextBlock Text="ارسال پیام به استاد ها" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 90"/>
-            <ComboBox materialDesign:HintAssist.Hint=" استاد مورد نظر خود را انتخاب کنید" Margin="0 0 0 10"/>
-            <TextBox materialDesign:HintAssist.Hint="موضوع" Margin="0 0 0 10"/>
-            <TextBox materialDesign:HintAssist.Hint="متن پیام" Margin="0 0 0 50" Height="200"  VerticalScrollBarVisibility="Auto" MaxLines="30"/>
-            <Button Content="Send" materialDesign:ButtonAssist.CornerRadius="5"/>
+            <ComboBox x:Name="cbTeacher" materialDesign:HintAssist.Hint=" استاد مورد نظر خود را انتخاب کنید" Margin="0 0 0 10"/>
+            <TextBox x:Name="txtSubject" materialDesign:HintAssist.Hint="موضوع" Margin="0 0 0 10"/>
+            <TextBox x:Name="txtText"  materialDesign:HintAssist.Hint="متن پیام" Margin="0 0 0 50" Height="200"  VerticalScrollBarVisibility="Auto" MaxLines="30"/>
+            <Button Content="ارسال" materialDesign:ButtonAssist.CornerRadius="5" Click="ButtonBase_OnClick"/>
         </StackPanel>
 
     </materialDesign:Card>

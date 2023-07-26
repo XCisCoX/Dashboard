@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="Dashboard_WPF.Views.teacher_courses"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Dashboard_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="700
+             " Width="677">
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" Loaded="Card_Loaded">
+
+
+        <Grid Margin="0,0,16,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="229*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="329*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
+
+                <DockPanel Margin="0 12 5 0">
+                   
+                    <Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
+                        <materialDesign:PackIcon Kind="Search"/>
+                    </Button>
+                </DockPanel>
+
+            
+              
+
+
+
+                <TextBlock Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
+                    <Grid x:Name="test">
+                       <DataGrid x:Name="dgMain">
+
+                       </DataGrid>
+
+
+                    </Grid>
+                </ScrollViewer>
+            </StackPanel>
+
+        </Grid>
+
+
+    </materialDesign:Card>
+</UserControl>

@@ -8,8 +8,27 @@
              mc:Ignorable="d" Height="700
              " Width="677">
 
-    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}">
+    <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone">
+        <StackPanel Margin="25 12 25 0">
 
-   
-    </materialDesign:Card>
+            <DockPanel Margin="0 12 5 0">
+              
+                <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+            </DockPanel>
+
+            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="../images/avatar.png" Height="80" Width="80" HorizontalAlignment="Center" Margin="0 0 0 0"/>
+            <TextBox materialDesign:HintAssist.Hint="شماره همراه" x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+            <TextBox materialDesign:HintAssist.Hint="آدرس ایمیل" x:Name="txtLevel"  FontSize="11" FontWeight="SemiBold" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
+
+            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center">
+                <WrapPanel>
+                    <materialDesign:PackIcon Kind="ContentSaveAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                    <TextBlock Text="ذخیره"/>
+                </WrapPanel>
+
+            </Button>
+            <DockPanel/>
+        </StackPanel>
+    </materialDesign:ColorZone>
 </UserControl>

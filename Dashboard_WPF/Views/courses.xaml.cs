@@ -62,9 +62,6 @@ namespace Dashboard_WPF.Views
             }
             var array = courses.ToArray();
 
-
-
-
             srd.Close();
             con.Close();
             int counter = 0;
