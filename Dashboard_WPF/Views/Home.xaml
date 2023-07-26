@@ -23,8 +23,7 @@
                     <Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
                         <materialDesign:PackIcon Kind="Search"/>
                     </Button>
-                    <TextBlock x:Name="txtDate" Text="" Foreground="SlateGray" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0 0 20 0"/>
-                </DockPanel>
+                   </DockPanel>
 
                 <materialDesign:ColorZone Mode="Custom" Background="MistyRose" Foreground="LightSalmon" CornerRadius="15" Padding="40 20" Margin="0 35 0 0">
 
@@ -44,7 +43,7 @@
                         <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
                     </Grid>
                 </materialDesign:ColorZone>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Height="486">
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Height="455">
                     <Grid  x:Name="GridNotifications">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,19 +31,61 @@ namespace Dashboard_WPF.Views
             InitializeComponent();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Handle the button click event here
+            var clickedButton = (MaterialDesignThemes.Wpf.ColorZone)sender;
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.DataContext = new student_courses(clickedButton.Name);
+            }
+        }
+
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
 
-            for (int i = 0; i <= 9; i++)
+
+            SqlConnection con =
+                new SqlConnection(
+                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+            con.Open();
+            SqlCommand userName = new SqlCommand("select [courseName],[courseId] from [CollegeProject].[dbo].[Courses]", con);
+            SqlDataReader srd = userName.ExecuteReader();
+            int ig = 0;
+            var courses = new List<string>();
+
+            while (srd.Read())
             {
-                for (int j = 0; j <= 3; j++)
+                courses.Add(srd.GetValue(0).ToString());
+                ig+=1;
+            }
+            var array = courses.ToArray();
+
+
+
+
+            srd.Close();
+            con.Close();
+            int counter = 0;
+            for (int i = 0; i <= ig; i++)
+            {
+                if (ig == 0)
                 {
+                    break;
+                }
+                for (int j = 0; j <=3; j++)
+                {
+                    if (ig == 0)
+                    {
+                        break;
+                    }
                     MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
                     StringBuilder sb = new StringBuilder();
 
                     //Create card
                     sb.Append(
-                        $@"<materialDesign:ColorZone  xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
+                        $@"<materialDesign:ColorZone  x:Name=""{array[counter]}"" xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
              xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
              xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
              xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
@@ -59,12 +102,20 @@ namespace Dashboard_WPF.Views
                             </Grid.ColumnDefinitions>
                             <materialDesign:PackIcon Grid.Column=""0"" Kind=""Pencil"" Height=""30"" Width=""30"" HorizontalAlignment=""Left"" VerticalAlignment=""Center"" Foreground=""White"" Margin=""0 8 0 7""/>
                             <StackPanel Grid.Column=""1"" VerticalAlignment=""Center"" Height=""31"" Margin=""0 7"">
-                                <TextBlock FlowDirection=""RightToLeft"" Text=""Common English"" FontSize=""11"" FontWeight=""Regular""/>
-                                <TextBlock FlowDirection=""RightToLeft"" Text=""Phrasal Verbs"" FontSize=""12"" FontWeight=""Bold""/>
+                                <TextBlock FlowDirection=""RightToLeft"" Text=""نام درس"" FontSize=""11"" FontWeight=""Regular""/>
+                                <TextBlock FlowDirection=""RightToLeft"" Text=""{array[counter]}"" FontSize=""12"" FontWeight=""Bold""/>
                             </StackPanel>
 </Grid></materialDesign:ColorZone>");
                     card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                    card.MouseDown += Button_Click;
                     container.Children.Add(card);
+                 
+                    counter++;
+                    if (counter == ig)
+                    {
+                        ig = 0;
+
+                    }
                 }
 
             }

@@ -48,7 +48,7 @@
 
 
                 <TextBlock Text="Your Courses" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="415">
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
                     <Grid x:Name="container">
 
                         <Grid.ColumnDefinitions>

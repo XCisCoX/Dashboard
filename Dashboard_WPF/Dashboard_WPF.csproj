@@ -64,14 +64,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="stuData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>stuData.xsd</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="Views\contact.xaml.cs">
       <DependentUpon>contact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\student_courses.xaml.cs">
+      <DependentUpon>student_courses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\courses.xaml.cs">
       <DependentUpon>courses.xaml</DependentUpon>
@@ -100,6 +98,10 @@
     <Page Include="Views\contact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\student_courses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\courses.xaml">
       <SubType>Designer</SubType>
@@ -140,17 +142,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="stuData.xsc">
-      <DependentUpon>stuData.xsd</DependentUpon>
-    </None>
-    <None Include="stuData.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>stuData.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="stuData.xss">
-      <DependentUpon>stuData.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

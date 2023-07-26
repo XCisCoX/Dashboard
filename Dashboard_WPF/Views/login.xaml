@@ -8,7 +8,7 @@
              mc:Ignorable="d" Height="700
              " Width="677">
 
-    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" >
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" Loaded="Card_Loaded" >
         <StackPanel Margin="20">
             <TextBlock Text="شما نیاز دارید که وارد اکانت خود شوید" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
             <TextBox materialDesign:HintAssist.Hint="نام کاربری" Margin="0 0 0 70" x:Name="UsernameBox"/>

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dashboard_WPF.Views;
+using System.Windows.Threading;
 
 namespace Dashboard_WPF
 {
@@ -39,23 +40,24 @@ namespace Dashboard_WPF
         {
             DataContext = new HomeModel();
         }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
 
+            txtDate.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+
+        }
+
+    
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            /*   SqlConnection con = new SqlConnection("Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
-               con.Open();
-               SqlCommand userName = new SqlCommand("select CONCAT(STName,' ',STLastName) from Students where stuID=1",con);
-               SqlDataReader srd= userName.ExecuteReader();
-               while(srd.Read())
-               {
-                   txtUserName.Text=srd.GetValue(0).ToString();
-               }
-               con.Close();*/
             dashboardZone.Visibility = Visibility.Hidden;
             profileZone.Visibility = Visibility.Hidden;
             DataContext = new login();
-
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0,0,500);
+            dispatcherTimer.Start();
 
         }
 
@@ -69,6 +71,12 @@ namespace Dashboard_WPF
             DataContext = new contact();
         }
 
+        private void btm_Exit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown(0);
+        }
+
+   
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             dashboardZone.Visibility = Visibility.Hidden;

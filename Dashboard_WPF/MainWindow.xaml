@@ -22,87 +22,99 @@
     </Window.Resources>
 
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" UniformCornerRadius="15" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4">
-
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="235"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="192"/>
-            </Grid.ColumnDefinitions>
 
-            <materialDesign:ColorZone Grid.Column="2" Height="650" CornerRadius="15 0 0 15" Background="White" VerticalAlignment="Center" x:Name="dashboardZone">
-                <StackPanel Margin="15">
-                    <WrapPanel Margin="0 10 5 60" HorizontalAlignment="Center">
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="images/logo.png" Height="30" Width="30"/>
-                        <TextBlock Text="آموزشگاه" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0"/>
-                    </WrapPanel>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="Red" Foreground="Red" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right" Click="btm_Exit">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+            <TextBlock x:Name="txtDate" Text="" Foreground="SlateGray" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" DockPanel.Dock="Right" Margin="29 0 20 0"/>
 
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="home_clicked">
-                        <WrapPanel Width="120">
-                            <materialDesign:PackIcon Kind="Home" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                            <TextBlock>داشبورد</TextBlock>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="235"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="23*"/>
+                    <ColumnDefinition Width="192"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:ColorZone Grid.Column="3" Height="650" CornerRadius="15 0 0 15" Background="White" VerticalAlignment="Center" x:Name="dashboardZone">
+                    <StackPanel Margin="15">
+                        <WrapPanel Margin="0 10 5 60" HorizontalAlignment="Center">
+                            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="images/logo.png" Height="30" Width="30"/>
+                            <TextBlock Text="آموزشگاه" FontSize="20" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0"/>
                         </WrapPanel>
-                    </Button>
 
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="Button_Click">
-                        <WrapPanel Width="120">
-                            <materialDesign:PackIcon Kind="Lecture" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                            <TextBlock>کلاس ها</TextBlock>
-                        </WrapPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15">
-                        <WrapPanel Width="120">
-                            <materialDesign:PackIcon Kind="FolderMedia" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                            <TextBlock>شهریه</TextBlock>
-                        </WrapPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15">
-                        <WrapPanel Width="120">
-                            <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                            <TextBlock>تنظیمات</TextBlock>
-                        </WrapPanel>
-                    </Button>
-
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="btn_teacher_send_message">
-                        <WrapPanel Width="120">
-                            <materialDesign:PackIcon Kind="HumanHello" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                            <TextBlock>تماس با استاد</TextBlock>
-                        </WrapPanel>
-                    </Button>
-
-                </StackPanel>
-            </materialDesign:ColorZone>
-
-
-
-            <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone">
-                <StackPanel Margin="25 12 25 0">
-
-                    <DockPanel Margin="0 12 5 0">
-                        <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="LightPink" Foreground="LightCoral" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right" Click="Button_Click_1">
-                            <materialDesign:PackIcon Kind="LogoutVariant"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="home_clicked">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="Home" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>داشبورد</TextBlock>
+                            </WrapPanel>
                         </Button>
-                        <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        
-                    </DockPanel>
 
-                    <Image RenderOptions.BitmapScalingMode="HighQuality" Source="images/avatar.png" Height="80" Width="80" HorizontalAlignment="Center" Margin="0 25 0 0"/>
-                    <TextBlock x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black">Anna Morrison</TextBlock>
-                    <TextBlock x:Name="txtLevel" Text="دانش آموز" FontSize="11" FontWeight="SemiBold" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="Button_Click">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="Lecture" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>کلاس ها</TextBlock>
+                            </WrapPanel>
+                        </Button>
 
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="LightPink" Background="LavenderBlush" Foreground="LightCoral" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center">
-                        <WrapPanel>
-                            <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Text="ویرایش"/>
-                        </WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="FolderMedia" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>شهریه</TextBlock>
+                            </WrapPanel>
+                        </Button>
 
-                    </Button>
-                    <DockPanel/>
-                </StackPanel>
-            </materialDesign:ColorZone>
-            <ContentControl Grid.Column="1" Content="{Binding}"/>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>تنظیمات</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="btn_teacher_send_message">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="HumanHello" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>تماس با استاد</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
+                    </StackPanel>
+                </materialDesign:ColorZone>
+
+
+
+                <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone">
+                    <StackPanel Margin="25 12 25 0">
+
+                        <DockPanel Margin="0 12 5 0">
+                            <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="LightPink" Foreground="LightCoral" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right" Click="Button_Click_1">
+                                <materialDesign:PackIcon Kind="LogoutVariant"/>
+                            </Button>
+                            <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+
+                        </DockPanel>
+
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="images/avatar.png" Height="80" Width="80" HorizontalAlignment="Center" Margin="0 25 0 0"/>
+                        <TextBlock x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black">Anna Morrison</TextBlock>
+                        <TextBlock x:Name="txtLevel" Text="دانش آموز" FontSize="11" FontWeight="SemiBold" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
+
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="LightPink" Background="LavenderBlush" Foreground="LightCoral" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center">
+                            <WrapPanel>
+                                <materialDesign:PackIcon Kind="Edit" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                                <TextBlock Text="ویرایش"/>
+                            </WrapPanel>
+
+                        </Button>
+                        <DockPanel/>
+                    </StackPanel>
+                </materialDesign:ColorZone>
+                <ContentControl Grid.Column="1" Content="{Binding}" Grid.ColumnSpan="2"/>
+            </Grid>
         </Grid>
     </materialDesign:Card>
 </Window>
