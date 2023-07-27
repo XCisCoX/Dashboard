@@ -10,7 +10,13 @@
 
     <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone">
         <StackPanel Margin="25 12 25 0">
+            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DarkRed" Background="#ffaf1f" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Left" Click="Button_Click">
+                <WrapPanel>
+                    <materialDesign:PackIcon Kind="Backburger" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                    <TextBlock Text="بازگشت"/>
+                </WrapPanel>
 
+            </Button>
             <DockPanel Margin="0 12 5 0">
               
                 <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>

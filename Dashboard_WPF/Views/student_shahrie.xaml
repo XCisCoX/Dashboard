@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Dashboard_WPF.Views.courses"
+﻿<UserControl x:Class="Dashboard_WPF.Views.student_shahrie"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,17 +13,17 @@
         <Grid Margin="0,0,16,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="229*"/>
-                <RowDefinition Height="100*"/>
+
                 <RowDefinition Height="329*"/>
+                <RowDefinition Height="100*"/>
             </Grid.RowDefinitions>
             <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
                 <DockPanel Margin="0 12 5 0">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Dashboard"/>
-                    
-                    <TextBlock x:Name="txtDate" Text="" Foreground="SlateGray" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0 0 20 0"/>
+                    <TextBlock FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="شهریه"/>
+
                 </DockPanel>
 
-                <materialDesign:ColorZone Mode="Custom" Background="MistyRose" Foreground="LightSalmon" CornerRadius="15" Padding="40 20" Margin="0 35 0 0">
+                <materialDesign:ColorZone Mode="Custom" Background="#01a191" Foreground="Black" CornerRadius="15" Padding="40 20" Margin="0 35 0 0" x:Name="boardzone">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -32,26 +32,24 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="خوش آمدی!" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
+                            <TextBlock Text="بخش شهریه" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
                             <TextBlock Text="" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold" Height="9"/>
-                            <TextBlock Text=" درس های زیر برای شماست" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
-                            <TextBlock Text="روی هر کدوم کلیک کنید تا وضعیت درسیتو ببینی" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="11" FontWeight="SemiBold" Height="19"/>
+                            <TextBlock x:Name="txtShahrie" Text="شما در حال حاضر همه شهریه خود را پرداخت کردید" FlowDirection="RightToLeft" Foreground="White" FontSize="13" FontWeight="SemiBold" Height="19"/>
                         </StackPanel>
 
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/Views/money.png" HorizontalAlignment="Left" Height="160" Width="160" Margin="10,-55,0,-55"/>
                     </Grid>
                 </materialDesign:ColorZone>
 
 
 
-                <TextBlock Text="Your Courses" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
+                <TextBlock Text="وضعیت پرداخت" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Height="331" >
                     <Grid x:Name="container">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="137*"/>
+                            <ColumnDefinition Width="487*"/>
                         </Grid.ColumnDefinitions>
 
                         <Grid.RowDefinitions>
@@ -66,6 +64,14 @@
 
                     </Grid>
                 </ScrollViewer>
+
+                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" x:Name="btnPardakht">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="AttachMoney" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Text="پرداخت"/>
+                    </WrapPanel>
+
+                </Button>
             </StackPanel>
 
         </Grid>

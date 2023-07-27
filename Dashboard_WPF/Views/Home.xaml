@@ -19,10 +19,8 @@
             <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
 
                 <DockPanel Margin="0 12 5 0">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Dashboard"/>
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
-                        <materialDesign:PackIcon Kind="Search"/>
-                    </Button>
+                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="داشبورد"/>
+                
                    </DockPanel>
 
                 <materialDesign:ColorZone Mode="Custom" Background="MistyRose" Foreground="LightSalmon" CornerRadius="15" Padding="40 20" Margin="0 35 0 0">
@@ -36,8 +34,8 @@
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="خوش آمدی!" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
                             <TextBlock Text="" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold" Height="9"/>
-                            <TextBlock Text=" درس های زیر برای شماست" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
-                            <TextBlock Text="روی هر کدوم کلیک کنید تا وضعیت درسیتو ببینی" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="11" FontWeight="SemiBold" Height="19"/>
+                            <TextBlock Text=" با انتخاب روی پیام های زیر میتونی اون ها رو " FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
+                            <TextBlock Text="کامل ببینی " FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
                         </StackPanel>
 
                         <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
@@ -54,7 +52,7 @@
                         <materialDesign:ColorZone Grid.Column="1" Margin="15 35 0 0" Mode="Custom" FlowDirection="RightToLeft" Background="White" Foreground="Black" CornerRadius="15" Padding="20 20">
                             <StackPanel>
                                 <DockPanel>
-                                    <materialDesign:PackIcon Kind="ArrowRight" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    
                                     <TextBlock FontSize="12" FontWeight="Bold" Text="ا طلاعیه و  اعلان ها"  FlowDirection="RightToLeft"/>
 
                                 </DockPanel>

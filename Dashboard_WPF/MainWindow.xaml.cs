@@ -24,7 +24,8 @@ namespace Dashboard_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        public Dictionary<string,string> user_data=new Dictionary<string,string>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -82,6 +83,18 @@ namespace Dashboard_WPF
             dashboardZone.Visibility = Visibility.Hidden;
             profileZone.Visibility = Visibility.Hidden;
             DataContext = new login();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            DataContext = new edit_user();
+            dashboardZone.Visibility = Visibility.Hidden;
+            profileZone.Visibility = Visibility.Hidden;
+        }
+
+        private void shahrieitem_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new student_shahrie();
         }
     }
 }

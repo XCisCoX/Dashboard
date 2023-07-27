@@ -20,9 +20,9 @@
 
                 <DockPanel Margin="0 12 5 0">
                    
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
+                    <!--<Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
                         <materialDesign:PackIcon Kind="Search"/>
-                    </Button>
+                    </Button>-->
                 </DockPanel>
 
             

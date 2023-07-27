@@ -48,14 +48,16 @@ namespace Dashboard_WPF.Views
                 con.Open();
                 SqlCommand sqlCommand = new SqlCommand(s, con);
                 SqlDataReader srd = sqlCommand.ExecuteReader();
-                string AccTy="", userInfo="",stuId="";
+                string userInfo="";
                 bool isLogin = false;
                 while (srd.Read())
                 {
-                    AccTy = srd.GetValue(3).ToString();
+                    mainWindow.user_data["uid"] = srd.GetValue(0).ToString();
+                    mainWindow.user_data["username"]=srd.GetValue(1).ToString();
+                    mainWindow.user_data["password"] = srd.GetValue(2).ToString();
+                    mainWindow.user_data["type"] = srd.GetValue(3).ToString();
+                    mainWindow.user_data["avatar"]=srd.GetValue(4).ToString();
                     isLogin=true;
-                    stuId = srd.GetValue(0).ToString();
-                  
                 }
                 srd.Close();
                 SqlCommand uinfCommand;
@@ -63,30 +65,48 @@ namespace Dashboard_WPF.Views
                 if (isLogin)
                 {
                     txtinfo.Text = "";
-                    switch (AccTy)
+                    switch (mainWindow.user_data["type"])
                     {
                         case "2":
                             userInfo = $@"SELECT 
-       CONCAT([firstName]
-      ,' ',[lastName])
-  FROM [CollegeProject].[dbo].[Students] where studentID={stuId}
+      [studentID]
+      ,[firstName]
+      ,[lastName]
+      ,[nationalCod]
+      ,[stuAddress]
+      ,[stuEmail]
+      ,[stuPhone]
+  FROM [CollegeProject].[dbo].[Students] where studentID={mainWindow.user_data["uid"]}
 ";
 
                             uinfCommand = new SqlCommand(userInfo, con);
                             srd = uinfCommand.ExecuteReader();
                             while (srd.Read())
                             {
-                                mainWindow.txtfullname.Text = srd.GetValue(0).ToString();
+                                mainWindow.user_data["firstname"] = srd.GetValue(1).ToString();
+                                mainWindow.user_data["lastname"]=srd.GetValue(2).ToString();
+                                mainWindow.user_data["codemeli"] = srd.GetValue(3).ToString();
+                                mainWindow.user_data["address"] = srd.GetValue(4).ToString();
+                                mainWindow.user_data["email"]=srd.GetValue(5).ToString();
+                                mainWindow.user_data["phone"]=srd.GetValue(6).ToString();
 
-                                mainWindow.txtLevel.Text = "دانشجو";
                             }
                             srd.Close();
+                            mainWindow.txtfullname.Text = mainWindow.user_data["firstname"] + " " +
+                                                          mainWindow.user_data["lastname"];
+                                
+                            mainWindow.txtLevel.Text = "دانشجو";
                             break;
                         case "3":
                             userInfo = $@"SELECT 
-       CONCAT([firstName]
-      ,' ',[lastName])
-  FROM [CollegeProject].[dbo].[Teachers] where teacherID={stuId}
+   [teacherID]
+      ,[firstName]
+      ,[lastName]
+      ,[nationalCod]
+      ,[tchAddress]
+      ,[tchEmail]
+      ,[tchPhone]
+  FROM [CollegeProject].[dbo].[Teachers] where teacherID={mainWindow.user_data["uid"]}
 ";
 
 
@@ -94,11 +114,20 @@ namespace Dashboard_WPF.Views
                             srd = uinfCommand.ExecuteReader();
                             while (srd.Read())
                             {
-                                mainWindow.txtfullname.Text = srd.GetValue(0).ToString();
+                                mainWindow.user_data["firstname"] = srd.GetValue(1).ToString();
+                                mainWindow.user_data["lastname"] = srd.GetValue(2).ToString();
+                                mainWindow.user_data["codemeli"] = srd.GetValue(3).ToString();
+                                mainWindow.user_data["address"] = srd.GetValue(4).ToString();
+                                mainWindow.user_data["email"] = srd.GetValue(5).ToString();
+                                mainWindow.user_data["phone"] = srd.GetValue(6).ToString();
 
-                                mainWindow.txtLevel.Text = "استاد";
                             }
                             srd.Close();
+                            mainWindow.txtfullname.Text = mainWindow.user_data["firstname"] + " " +
+                                                          mainWindow.user_data["lastname"];
+                            mainWindow.shahrieitem.Visibility = Visibility.Collapsed;
+                            mainWindow.txtLevel.Text = "استاد";
+                            mainWindow.txtContactwith.Text = "تماس دانشجو";
                             break;
                     }
 

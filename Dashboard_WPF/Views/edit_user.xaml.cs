@@ -24,5 +24,16 @@ namespace Dashboard_WPF.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.profileZone.Visibility = Visibility.Visible;
+                mainWindow.dashboardZone.Visibility = Visibility.Visible;
+                mainWindow.DataContext = new Home();
+            }
+        }
     }
 }

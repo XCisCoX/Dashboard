@@ -30,6 +30,7 @@ namespace Dashboard_WPF.Views
         Dictionary<string, string> iDictionary = new Dictionary<string, string>();
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             SqlConnection con =
                 new SqlConnection(
                     "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
