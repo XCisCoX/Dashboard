@@ -38,7 +38,10 @@ namespace Dashboard_WPF.Views
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
             {
-                mainWindow.DataContext = new student_courses(clickedButton.Name);
+                if (mainWindow.user_data["type"]=="2")
+                    mainWindow.DataContext = new student_courses(clickedButton.Name);
+                else if (mainWindow.user_data["type"]=="3") 
+                    mainWindow.DataContext = new teacher_courses(clickedButton.Name);
             }
         }
 

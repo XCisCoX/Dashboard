@@ -96,6 +96,12 @@ namespace Dashboard_WPF
         {
             DataContext = new student_shahrie();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+
+        }
     }
 }
 

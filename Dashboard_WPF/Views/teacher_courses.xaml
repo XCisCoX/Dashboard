@@ -33,9 +33,14 @@
                 <TextBlock Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
                 <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
                     <Grid x:Name="test">
-                       <DataGrid x:Name="dgMain">
-
-                       </DataGrid>
+                        <DataGrid ItemsSource="{Binding WatchListCollection}" x:Name="dgMain" MouseDoubleClick="dgMain_MouseDoubleClick" CanUserAddRows="False" CanUserReorderColumns="False" RowEditEnding="dgMain_RowEditEnding">
+                           <DataGrid.Columns>
+                      
+                          
+                              
+                           </DataGrid.Columns>
+                         
+                        </DataGrid>
 
 
                     </Grid>

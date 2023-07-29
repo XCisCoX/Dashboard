@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,17 @@ namespace Dashboard_WPF.Views
     /// <summary>
     /// Interaction logic for courses.xaml
     /// </summary>
+    ///
+    public class WatchListModel : INotifyPropertyChanged
+    {
+        // Whatever properties here
+        public string Id { get; set; }
+        public string Name { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+    }
+
     public partial class teacher_courses : UserControl
     {
         private string coursename = "";
@@ -34,35 +47,49 @@ namespace Dashboard_WPF.Views
             InitializeComponent();
         }
 
+      
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
             SqlConnection con =
                 new SqlConnection(
                     "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
             con.Open();
-            SqlCommand userName =
-                new SqlCommand(
-                    $@"SELECT c.startDate, c.endDate, c.startTime, c.endTime, t.firstName, t.lastName, c.classLink
-FROM Classes c
-JOIN Teachers t ON c.teacherID = t.teacherID
-WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{coursename}');",
-                    con);
-            SqlDataReader srd = userName.ExecuteReader();
+            DataSet ds = new DataSet();
+            SqlDataAdapter sd = new SqlDataAdapter();
 
-           // var courses = new List<string>();
+            sd.SelectCommand = new SqlCommand(
+                $@"select  cd.stuScore, s.firstName,s.lastName , s.studentID ,s.stuEmail,s.stuPhone from Classes c join ClassDetails cd on c.classID=cd.classID join Students s on  s.studentID=cd.studentID 
+where (select co.courseID from Courses co where co.courseName='{coursename}')=c.courseID
+order by c.classID", con);
+            sd.Fill(ds);
 
-            while (srd.Read())
-            {
-               
+            // var courses = new List<string>();
+            dgMain.ItemsSource = ds.Tables[0].DefaultView;
 
+         
+        }
+      
+        
 
-            }
-
-            // var array = courses.ToArray();
-
-
+        private void dgMain_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+           // dgMain.SelectedCells
         }
 
+        private void dgMain_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            SqlConnection con =
+                new SqlConnection(
+                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+            con.Open();
+            DataSet ds = new DataSet();
+            SqlDataAdapter sd = new SqlDataAdapter();
+
+         //   sd.SelectCommand = new SqlCommand(
+             //   $@"", con);
+               
+             MessageBox.Show(dgMain.SelectedCells[0].ToString());
+        }
     }
 }
 
