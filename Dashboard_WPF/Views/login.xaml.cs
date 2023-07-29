@@ -20,6 +20,8 @@ using Dashboard_WPF.ViewModels;
 
 namespace Dashboard_WPF.Views
 {
+
+
     /// <summary>
     /// Interaction logic for login.xaml
     /// </summary>
@@ -42,7 +44,7 @@ namespace Dashboard_WPF.Views
       ,[userPass]
       ,[accTyp]
       ,[userAvatar]
-  FROM [CollegeProject].[dbo].[Accounts] where userName='{UsernameBox.Text}' and userPass='{PasswordBox.Password}'
+  FROM [CollegeProject].[dbo].[Accounts] where userName='{/*UsernameBox.Text*/"alifar"}' and userPass='{/*PasswordBox.Password*/"321"}'
 ";
                 SqlConnection con = new SqlConnection("Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
                 con.Open();
