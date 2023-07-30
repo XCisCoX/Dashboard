@@ -59,26 +59,32 @@
                             </WrapPanel>
                         </Button>
 
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" x:Name="studentitem" Click="studentitem_Click" Visibility="Collapsed">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="AccountStudent" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>دانشجو ها</TextBlock>
+                            </WrapPanel>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" x:Name="ostadsitem" Click="ostadsitem_Click" Visibility="Collapsed">
+                            <WrapPanel Width="120">
+                                <materialDesign:PackIcon Kind="Teacher" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <TextBlock>استاد ها</TextBlock>
+                            </WrapPanel>
+                        </Button>
+
                         <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="Button_Click">
                             <WrapPanel Width="120">
-                                <materialDesign:PackIcon Kind="Lecture" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <materialDesign:PackIcon Kind="Books" VerticalAlignment="Center" Margin="0 0 20 0"/>
                                 <TextBlock>کلاس ها</TextBlock>
                             </WrapPanel>
                         </Button>
 
                         <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" x:Name="shahrieitem" Click="shahrieitem_Click">
                             <WrapPanel Width="120">
-                                <materialDesign:PackIcon Kind="FolderMedia" VerticalAlignment="Center" Margin="0 0 20 0"/>
+                                <materialDesign:PackIcon Kind="Money100" VerticalAlignment="Center" Margin="0 0 20 0"/>
                                 <TextBlock>شهریه</TextBlock>
                             </WrapPanel>
                         </Button>
-
-                        <!--<Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15">
-                            <WrapPanel Width="120">
-                                <materialDesign:PackIcon Kind="Settings" VerticalAlignment="Center" Margin="0 0 20 0"/>
-                                <TextBlock>تنظیمات</TextBlock>
-                            </WrapPanel>
-                        </Button>-->
 
                         <Button Style="{StaticResource MaterialDesignFlatButton}" Foreground="{DynamicResource PrimaryHueLightForegroundBrush}" materialDesign:ButtonAssist.CornerRadius="6" Width="auto" Height="35" materialDesign:RippleAssist.Feedback="White" Margin="0 0 0 15" Click="btn_teacher_send_message" x:Name="contactitem">
                             <WrapPanel Width="120">
@@ -102,9 +108,13 @@
                             <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
                         </DockPanel>
+                        <Ellipse Height="100" Width="100">
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="imgavatar" RenderOptions.BitmapScalingMode="HighQuality" ImageSource="images/avatar.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
 
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="images/avatar.png" Height="80" Width="80" HorizontalAlignment="Center" Margin="0 25 0 0"/>
-                        <TextBlock x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black">Anna Morrison</TextBlock>
+                            <TextBlock x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black">Anna Morrison</TextBlock>
                         <TextBlock x:Name="txtLevel" Text="دانش آموز" FontSize="11" FontWeight="SemiBold" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
 
                         <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="LightPink" Background="LavenderBlush" Foreground="LightCoral" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_2">

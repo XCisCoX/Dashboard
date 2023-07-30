@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="Dashboard_WPF.Views.adminstudents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Dashboard_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" Height="700
+             " Width="677">
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" Loaded="Card_Loaded">
+
+
+        <Grid Margin="0,0,16,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="229*"/>
+                <RowDefinition Height="100*"/>
+                <RowDefinition Height="329*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
+
+                <DockPanel Margin="0 12 5 0">
+
+                    <!--<Button Style="{StaticResource MaterialDesignIconButton}" Height="40" Width="40" materialDesign:ButtonAssist.CornerRadius="6" DockPanel.Dock="Right">
+                        <materialDesign:PackIcon Kind="Search"/>
+                    </Button>-->
+                </DockPanel>
+
+
+
+
+
+
+                <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+
+                <Grid x:Name="test" Height="402" Width="629">
+                        <DataGrid x:Name="dgMain"  CanUserReorderColumns="True"  >
+                            <DataGrid.Columns>
+
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+
+                    </Grid>
+             
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="400"></ColumnDefinition>
+                        <ColumnDefinition Width="300"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Row="0" x:Name="txtDelStudent"  materialDesign:HintAssist.Hint="آیدی دانشجو رو وارد کنید" HorizontalAlignment="Center" Margin="0,28,0,20" Width="300"/>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Grid.Row="0" Grid.Column="1" materialDesign:RippleAssist.Feedback="Red" Background="OrangeRed" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="10,17,74,10" Click="Button_Click_1" >
+                        <WrapPanel>
+                            <materialDesign:PackIcon Kind="Delete" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                            <TextBlock Text="حذف دانشجو"/>
+                        </WrapPanel>
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" Grid.Row="1" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6"  Grid.ColumnSpan="2" Width="auto" Click="Button_Click" Margin="0,2,0,-4">
+                        <WrapPanel>
+                            <materialDesign:PackIcon Kind="TickAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                            <TextBlock Text="ذخیره اطلاعات"/>
+                        </WrapPanel>
+                    </Button>
+                </Grid>
+
+            </StackPanel>
+
+        </Grid>
+
+
+    </materialDesign:Card>
+</UserControl>

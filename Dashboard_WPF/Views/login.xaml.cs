@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
@@ -44,7 +46,7 @@ namespace Dashboard_WPF.Views
       ,[userPass]
       ,[accTyp]
       ,[userAvatar]
-  FROM [CollegeProject].[dbo].[Accounts] where userName='{/*UsernameBox.Text*/"alifar"}' and userPass='{/*PasswordBox.Password*/"321"}'
+  FROM [CollegeProject].[dbo].[Accounts] where userName='{UsernameBox.Text}' and userPass='{txtpass.Password}'
 ";
                 SqlConnection con = new SqlConnection("Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
                 con.Open();
@@ -69,6 +71,41 @@ namespace Dashboard_WPF.Views
                     txtinfo.Text = "";
                     switch (mainWindow.user_data["type"])
                     {
+                        case "1":
+                            userInfo = $@"SELECT 
+      [adminID]
+      ,[firstName]
+      ,[lastName]
+      ,[nationalCod]
+      ,[admAddress]
+      ,[admEmail]
+      ,[admPhone]
+  FROM [CollegeProject].[dbo].[Admins] where adminID={mainWindow.user_data["uid"]}
+";
+
+                            uinfCommand = new SqlCommand(userInfo, con);
+                            srd = uinfCommand.ExecuteReader();
+                            while (srd.Read())
+                            {
+                                mainWindow.user_data["firstname"] = srd.GetValue(1).ToString();
+                                mainWindow.user_data["lastname"] = srd.GetValue(2).ToString();
+                                mainWindow.user_data["codemeli"] = srd.GetValue(3).ToString();
+                                mainWindow.user_data["address"] = srd.GetValue(4).ToString();
+                                mainWindow.user_data["email"] = srd.GetValue(5).ToString();
+                                mainWindow.user_data["phone"] = srd.GetValue(6).ToString();
+
+                            }
+                            srd.Close();
+                            mainWindow.txtfullname.Text = mainWindow.user_data["firstname"] + " " +
+                                                          mainWindow.user_data["lastname"];
+                          
+                            mainWindow.txtLevel.Text = "ادمین";
+                            mainWindow.shahrieitem.Visibility = Visibility.Collapsed;
+                            mainWindow.ostadsitem.Visibility = Visibility.Visible;
+                            mainWindow.studentitem.Visibility= Visibility.Visible;
+                            break;
+
+
                         case "2":
                             userInfo = $@"SELECT 
       [studentID]
@@ -96,8 +133,11 @@ namespace Dashboard_WPF.Views
                             srd.Close();
                             mainWindow.txtfullname.Text = mainWindow.user_data["firstname"] + " " +
                                                           mainWindow.user_data["lastname"];
-                                
+                            mainWindow.ostadsitem.Visibility = Visibility.Collapsed;
+                            mainWindow.studentitem.Visibility = Visibility.Collapsed;
+                            mainWindow.shahrieitem.Visibility = Visibility.Visible;
                             mainWindow.txtLevel.Text = "دانشجو";
+                           
                             break;
                         case "3":
                             userInfo = $@"SELECT 
@@ -128,11 +168,24 @@ namespace Dashboard_WPF.Views
                             mainWindow.txtfullname.Text = mainWindow.user_data["firstname"] + " " +
                                                           mainWindow.user_data["lastname"];
                             mainWindow.shahrieitem.Visibility = Visibility.Collapsed;
+                            mainWindow.ostadsitem.Visibility = Visibility.Collapsed;
+                            mainWindow.studentitem.Visibility = Visibility.Collapsed;
                             mainWindow.txtLevel.Text = "استاد";
                             mainWindow.txtContactwith.Text = "تماس دانشجو";
                             break;
                     }
+                    try
+                    {
+       
+                        mainWindow.imgavatar.ImageSource = new BitmapImage(new Uri(mainWindow.user_data["avatar"]));
+                    }
+                    catch (Exception exception)
+                    {
 
+                        mainWindow.imgavatar.ImageSource = new BitmapImage(new Uri(Environment.CurrentDirectory+"\\images\\avatar.png"));
+                      
+                    
+                    }
                     mainWindow.dashboardZone.Visibility = Visibility.Visible;
                     mainWindow.profileZone.Visibility = Visibility.Visible;
                     mainWindow.DataContext = new HomeModel();
@@ -152,6 +205,24 @@ namespace Dashboard_WPF.Views
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbpass.IsChecked == true)
+            {
+                txtpassrev.Text = txtpass.Password;
+                txtpass.Visibility = Visibility.Hidden;
+                txtpassrev.Visibility = Visibility.Visible;
+                txtpassrev.Focus();
+            }
+            else
+            {
+                txtpass.Password = txtpassrev.Text;
+                txtpass.Visibility = Visibility.Visible;
+                txtpassrev.Visibility = Visibility.Hidden;
+                txtpass.Focus();
+            }
         }
     }
 }

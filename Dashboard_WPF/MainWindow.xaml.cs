@@ -34,7 +34,9 @@ namespace Dashboard_WPF
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
-            DragMove();
+         
+                DragMove();
+
         }
 
         private void home_clicked(object sender, RoutedEventArgs e)
@@ -101,6 +103,16 @@ namespace Dashboard_WPF
         {
             WindowState = WindowState.Minimized;
 
+        }
+
+        private void ostadsitem_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new adminteachers();
+        }
+
+        private void studentitem_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new adminstudents();
         }
     }
 }

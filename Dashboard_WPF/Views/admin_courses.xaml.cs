@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -33,24 +34,37 @@ namespace Dashboard_WPF.Views
     ///
 
 
-    public partial class teacher_courses : UserControl
+    public partial class admin_courses : UserControl
     {
         private string coursename = "";
 
-        public teacher_courses(string cName)
+        public admin_courses(string cName)
         {
             this.coursename = cName;
             InitializeComponent();
         }
 
-      
+
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
-            txtCourseName.Text= coursename;
             SqlConnection con =
                 new SqlConnection(
                     "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
             con.Open();
+
+            string userInfo = $@"SELECT CONCAT(t.firstName,' ',t.lastName)
+  FROM Classes c join Teachers t on t.teacherID=c.teacherID";
+
+            SqlCommand uinfCommand = new SqlCommand(userInfo, con);
+            uinfCommand = new SqlCommand(userInfo, con);
+            SqlDataReader srd = uinfCommand.ExecuteReader();
+            while (srd.Read())
+            {
+                txtCourseName.Text = "Course : "+coursename+"          Teacher: "+srd.GetValue(0).ToString();
+             
+            }
+
+            srd.Close();
             DataSet ds = new DataSet();
             SqlDataAdapter sd = new SqlDataAdapter();
 
@@ -62,16 +76,12 @@ order by c.classID", con);
 
 
             dgMain.ItemsSource = ds.Tables[0].DefaultView;
-            dgMain.Columns[0].IsReadOnly = false;
-            for (int i = 1; i < dgMain.Columns.Count; i++)
+
+            for (int i = 0; i < dgMain.Columns.Count; i++)
             {
                 dgMain.Columns[i].IsReadOnly = true;
             }
-            
-         
         }
-      
-        
 
         private void dgMain_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
@@ -124,12 +134,6 @@ and  classID=(select co.classID from Classes co where co.courseID=(select c.cour
                 MessageBox.Show("مشکلی در ذخیره سازی اطلاعات وجود دارد!", "پیام",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("لینک کلاس در حال باز شدن میباشد", "پیام",
-                MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

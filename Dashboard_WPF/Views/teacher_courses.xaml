@@ -30,10 +30,10 @@
 
 
 
-                <TextBlock Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
-                    <Grid x:Name="test">
-                        <DataGrid x:Name="dgMain" CanUserAddRows="False" CanUserReorderColumns="False" RowEditEnding="dgMain_RowEditEnding" >
+                <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+
+                <Grid x:Name="test" Height="374">
+                        <DataGrid x:Name="dgMain" CanUserAddRows="False"  CanUserReorderColumns="False" RowEditEnding="dgMain_RowEditEnding" >
                            <DataGrid.Columns>
 
                               
@@ -43,7 +43,21 @@
 
 
                     </Grid>
-                </ScrollViewer>
+             
+                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="TickAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Text="ذخیره اطلاعات"/>
+                    </WrapPanel>
+
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DarkBlue" Background="#a08821" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_1">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="SchoolOnline" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Text="برگذاری کلاس آنلاین"/>
+                    </WrapPanel>
+
+                </Button>
             </StackPanel>
 
         </Grid>

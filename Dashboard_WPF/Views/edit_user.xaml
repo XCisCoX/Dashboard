@@ -8,7 +8,7 @@
              mc:Ignorable="d" Height="700
              " Width="677">
 
-    <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone">
+    <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone" Loaded="profileZone_Loaded">
         <StackPanel Margin="25 12 25 0">
             <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DarkRed" Background="#ffaf1f" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Left" Click="Button_Click">
                 <WrapPanel>
@@ -18,22 +18,54 @@
 
             </Button>
             <DockPanel Margin="0 12 5 0">
-              
+
                 <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
             </DockPanel>
+            <Ellipse Height="100" Width="100">
+                <Ellipse.Fill>
+                    <ImageBrush  x:Name="avatarimg" RenderOptions.BitmapScalingMode="HighQuality" ImageSource="../images/avatar.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
 
-            <Image RenderOptions.BitmapScalingMode="HighQuality" Source="../images/avatar.png" Height="80" Width="80" HorizontalAlignment="Center" Margin="0 0 0 0"/>
-            <TextBox materialDesign:HintAssist.Hint="شماره همراه" x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 7" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
-            <TextBox materialDesign:HintAssist.Hint="آدرس ایمیل" x:Name="txtLevel"  FontSize="11" FontWeight="SemiBold" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Gray"/>
+            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="NavajoWhite" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 0" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_2">
+                <WrapPanel>
+                    <materialDesign:PackIcon Kind="ImageAdd" VerticalAlignment="Center" Margin="0 0 0 0"/>
+                    <TextBlock Text="تغییر عکس"/>
+                </WrapPanel>
 
-            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center">
+            </Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Text="نام و نام خانوادگی" FlowDirection="RightToLeft"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
+                <TextBox  materialDesign:HintAssist.Hint="شماره همراه" Grid.Row="1" Grid.Column="1"  FlowDirection="RightToLeft" x:Name="txtPhoneNumber" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
+                <TextBlock materialDesign:HintAssist.Hint="نام کاربری" Grid.Row="2" Grid.Column="1"  FlowDirection="RightToLeft" x:Name="txtUserName" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <PasswordBox x:Name="txtpass" materialDesign:HintAssist.Hint="پسورد" FlowDirection="RightToLeft" materialDesign:PasswordBoxAssist.PasswordMaskedIcon="Show"  Height="30" Width="230" HorizontalAlignment="Center" Margin="0,6,0,7"/>
+                    <TextBox x:Name="txtpassrev" Visibility="Hidden" materialDesign:HintAssist.Hint="پسورد"  FlowDirection="RightToLeft" Height="30" Width="230" HorizontalAlignment="Center" Margin="0,6,0,7"/>
+
+                    <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="20" Height="40" Width="23" HorizontalAlignment="Left" x:Name="cbpass" Click="CheckBox_Click" Margin="7,2,0,1"></CheckBox>
+                </Grid>
+                <TextBox Grid.Row="1" Grid.Column="0"  materialDesign:HintAssist.Hint="آدرس ایمیل" x:Name="txtemail"  FontSize="11" FontWeight="SemiBold" TextAlignment="Center"  Margin="0 15 0 3" HorizontalAlignment="Center" Foreground="Gray" Width="230"/>
+
+            </Grid>
+
+            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_1">
                 <WrapPanel>
                     <materialDesign:PackIcon Kind="ContentSaveAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
                     <TextBlock Text="ذخیره"/>
                 </WrapPanel>
 
             </Button>
+
             <DockPanel/>
         </StackPanel>
     </materialDesign:ColorZone>

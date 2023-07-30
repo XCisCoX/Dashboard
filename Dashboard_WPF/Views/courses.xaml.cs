@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,7 +39,9 @@ namespace Dashboard_WPF.Views
             MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
             if (mainWindow != null)
             {
-                if (mainWindow.user_data["type"]=="2")
+                if (mainWindow.user_data["type"] == "1")
+                    mainWindow.DataContext = new admin_courses(clickedButton.Name);
+                else if (mainWindow.user_data["type"]=="2")
                     mainWindow.DataContext = new student_courses(clickedButton.Name);
                 else if (mainWindow.user_data["type"]=="3") 
                     mainWindow.DataContext = new teacher_courses(clickedButton.Name);
@@ -48,44 +51,66 @@ namespace Dashboard_WPF.Views
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
 
-
-            SqlConnection con =
-                new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
-            con.Open();
-            SqlCommand userName = new SqlCommand("select [courseName],[courseId] from [CollegeProject].[dbo].[Courses]", con);
-            SqlDataReader srd = userName.ExecuteReader();
-            int ig = 0;
-            var courses = new List<string>();
-
-            while (srd.Read())
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            SqlCommand userName= null;
+            if (mainWindow != null)
             {
-                courses.Add(srd.GetValue(0).ToString());
-                ig+=1;
-            }
-            var array = courses.ToArray();
-
-            srd.Close();
-            con.Close();
-            int counter = 0;
-            for (int i = 0; i <= ig; i++)
-            {
-                if (ig == 0)
+                SqlConnection con =
+                    new SqlConnection(
+                        "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                con.Open();
+                if (mainWindow.user_data["type"] == "3")
                 {
-                    break;
+                    userName =
+                        new SqlCommand(
+                            $@"select co.courseName,co.courseId from Courses co JOIN Classes c on c.courseID=co.courseID where co.teacherID={mainWindow.user_data["uid"]}",
+                            con);
                 }
-                for (int j = 0; j <=3; j++)
+                else if (mainWindow.user_data["type"] == "1")
                 {
-                    if (ig == 0)
-                    {
-                        break;
-                    }
-                    MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
-                    StringBuilder sb = new StringBuilder();
+                    userName =
+                        new SqlCommand(
+                            $@"select co.courseName,co.courseId from Courses co JOIN Classes c on c.courseID=co.courseID",
+                            con);
+                }
+                else if (mainWindow.user_data["type"] == "2")
+                {
+                    userName =
+                        new SqlCommand(
+                            $@"select co.courseName,co.courseID from students s join ClassDetails cd on s.studentID=cd.studentID join classes c on cd.classID=c.classID join courses co on c.courseID=co.courseID
+where cd.studentID={mainWindow.user_data["uid"]}",
+                            con);
+                }
 
-                    //Create card
-                    sb.Append(
-                        $@"<materialDesign:ColorZone  x:Name=""{array[counter]}"" xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
+                SqlDataReader srd = userName.ExecuteReader();
+                int ig = 0;
+                var courses = new List<string>();
+
+                while (srd.Read())
+                {
+                    courses.Add(srd.GetValue(0).ToString());
+                    ig += 1;
+                }
+
+                var array = courses.ToArray();
+
+                srd.Close();
+                con.Close();
+                int counter = 0;
+                for (int i = 0; i < array.Length; i++)
+                {
+                   
+
+                    for (int j = 0; j < 3; j++)
+                    {
+
+                      
+                        MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
+                        StringBuilder sb = new StringBuilder();
+                        string xnamer =  array[counter] ;
+                        //Create card
+                        sb.Append(
+                            $@"<materialDesign:ColorZone  x:Name=""{xnamer}"" xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
              xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
              xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
              xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
@@ -94,26 +119,34 @@ namespace Dashboard_WPF.Views
              Grid.Column=""{j.ToString()}""
              Grid.Row=""{i.ToString()}""
              CornerRadius=""15"" Height=""65"" Mode=""Custom""
-             Background=""CornflowerBlue"" Margin=""0 0 15 15"" Foreground=""White"" Padding=""20 10"">
+             Background=""CornflowerBlue"" Margin=""0 0 15 15"" Foreground=""White"" Padding=""20 10"" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width=""23*""/>
                                 <ColumnDefinition Width=""52*""/>
                             </Grid.ColumnDefinitions>
-                            <materialDesign:PackIcon Grid.Column=""0"" Kind=""Pencil"" Height=""30"" Width=""30"" HorizontalAlignment=""Left"" VerticalAlignment=""Center"" Foreground=""White"" Margin=""0 8 0 7""/>
+                            <materialDesign:PackIcon Grid.Column=""0"" Kind=""Books"" Height=""30"" Width=""30"" HorizontalAlignment=""Left"" VerticalAlignment=""Center"" Foreground=""White"" Margin=""0 8 0 7""/>
                             <StackPanel Grid.Column=""1"" VerticalAlignment=""Center"" Height=""31"" Margin=""0 7"">
                                 <TextBlock FlowDirection=""RightToLeft"" Text=""نام درس"" FontSize=""11"" FontWeight=""Regular""/>
-                                <TextBlock FlowDirection=""RightToLeft"" Text=""{array[counter]}"" FontSize=""12"" FontWeight=""Bold""/>
+                                <TextBlock FlowDirection=""RightToLeft"" Text=""{xnamer}"" FontSize=""12"" FontWeight=""Bold""/>
                             </StackPanel>
-</Grid></materialDesign:ColorZone>");
-                    card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
-                    card.MouseDown += Button_Click;
-                    container.Children.Add(card);
-                 
-                    counter++;
-                    if (counter == ig)
+            </Grid></materialDesign:ColorZone>");
+                        
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        card.MouseDown += Button_Click;
+                        container.Children.Add(card);
+                        counter++;
+                        if (counter == array.Length)
+                        {
+                            break;
+
+                        }
+                        
+
+                    }
+                    if (counter == array.Length)
                     {
-                        ig = 0;
+                        break;
 
                     }
                 }

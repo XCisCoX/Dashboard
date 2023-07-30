@@ -9,10 +9,15 @@
              " Width="677">
 
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" Loaded="Card_Loaded" >
-        <StackPanel Margin="20">
+        <StackPanel Margin="148,7,101,61">
             <TextBlock Text="شما نیاز دارید که وارد اکانت خود شوید" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
             <TextBox materialDesign:HintAssist.Hint="نام کاربری" Margin="0 0 0 70" x:Name="UsernameBox"/>
-            <PasswordBox materialDesign:HintAssist.Hint="پسورد" Margin="0 0 0 70" x:Name="PasswordBox"/>
+            <Grid>
+                <PasswordBox x:Name="txtpass" materialDesign:HintAssist.Hint="پسورد" materialDesign:PasswordBoxAssist.PasswordMaskedIcon="Show"  Height="30" Width="374" HorizontalAlignment="Left"/>
+                <TextBox x:Name="txtpassrev" Visibility="Hidden" materialDesign:HintAssist.Hint="پسورد"  Height="30" Width="374" HorizontalAlignment="Left"/>
+
+                <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="40" Height="40" Width="40" HorizontalAlignment="Right" x:Name="cbpass" Click="CheckBox_Click"></CheckBox>
+            </Grid>
             <Button Content="ورود" HorizontalAlignment="Center" materialDesign:ButtonAssist.CornerRadius="5"  Width="520" Click="LoginButton_Click" Height="48" Margin="0 100 0 0"/>
             <TextBlock x:Name="txtinfo" Text="" FlowDirection="RightToLeft"  Foreground="Red" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
         </StackPanel>

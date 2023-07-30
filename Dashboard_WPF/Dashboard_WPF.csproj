@@ -49,6 +49,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,11 +69,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\HomeModel.cs" />
+    <Compile Include="Views\adminstudents.xaml.cs">
+      <DependentUpon>adminstudents.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\contact.xaml.cs">
       <DependentUpon>contact.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\student_shahrie.xaml.cs">
       <DependentUpon>student_shahrie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\adminteachers.xaml.cs">
+      <DependentUpon>adminteachers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\admin_courses.xaml.cs">
+      <DependentUpon>admin_courses.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\teacher_courses.xaml.cs">
       <DependentUpon>teacher_courses.xaml</DependentUpon>
@@ -104,11 +114,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\adminstudents.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\contact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\student_shahrie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\adminteachers.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\admin_courses.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -173,6 +195,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\money.png" />

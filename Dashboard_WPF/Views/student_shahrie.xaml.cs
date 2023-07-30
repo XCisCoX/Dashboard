@@ -39,7 +39,7 @@ namespace Dashboard_WPF.Views
 
         string checkstatus(string status)
         {
-            if (status == "1")
+            if (status == "2")
                 return "پرداخت شده";
             else
                 return "نیاز به پرداخت ";
@@ -76,11 +76,13 @@ namespace Dashboard_WPF.Views
                 }
                 foreach (var VARIABLE in studList)
                 {
-                    MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
-                    StringBuilder sb = new StringBuilder();
-                    ig += 1;
-                    //Create card
-                    sb.Append($@"   
+                    if (VARIABLE["status"] == "0")
+                    {
+                        MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
+                        StringBuilder sb = new StringBuilder();
+                        ig += 1;
+                        //Create card
+                        sb.Append($@"   
                             <materialDesign:ColorZone
 xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
              xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
@@ -92,21 +94,85 @@ Grid.Row=""{ig}"" Mode=""Custom"" FlowDirection=""RightToLeft"" Background=""Whi
                             <StackPanel>
        
                                 <DockPanel>
-                                    <TextBlock HorizontalAlignment=""Left"" FontSize=""11"" FontWeight=""SemiBold"" Foreground=""Gray""><Bold Foreground=""Black"">{checkstatus(VARIABLE["status"])}</Bold></TextBlock>
+                                    <TextBlock HorizontalAlignment=""Left"" FontSize=""16"" FontWeight=""SemiBold"" Foreground=""Gray""><Bold Foreground=""Black"">{checkstatus(VARIABLE["status"])}</Bold></TextBlock>
 
                               
                                 </DockPanel>
-                                <TextBlock HorizontalAlignment=""Left"" FontSize=""11"" FontWeight=""SemiBold"" Foreground=""DimGray"">شما در ترم {VARIABLE["term"]}مبلغ {VARIABLE["paidamount"]}تومان پرداخت کردید و {VARIABLE["remainingamount"]} مانده است و نیاز به پرداخت دارید</TextBlock>
+                                <TextBlock HorizontalAlignment=""Left"" FontSize=""14"" FontWeight=""SemiBold"" Foreground=""DimGray"">شما در ترم {VARIABLE["term"]} هیچی پرداخت نکردید و نیاز دارید {string.Format("{0:N0}", double.Parse(VARIABLE["remainingamount"].Replace(",", "")))} تومان پرداخت کنید!</TextBlock>
 
                             </StackPanel>
                         </materialDesign:ColorZone>");
-                    card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
-                 //   card.MouseDown += Button_Click;
-                    container.Children.Add(card);
-                    if (VARIABLE["status"] == "1")
+
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        //   card.MouseDown += Button_Click;
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        //   card.MouseDown += Button_Click;
+                        container.Children.Add(card);
+                        this.boardzone.Background = new SolidColorBrush(Color.FromRgb(160, 29, 19));
+                        txtShahrie.Text = "شما شهریه پرداخت نشده ای دارید!";
+                        btnPardakht.IsEnabled = true;
+                    }
+                    else if (VARIABLE["status"] == "2")
+                    {
+                        MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
+                        StringBuilder sb = new StringBuilder();
+                        ig += 1;
+                        //Create card
+                        sb.Append($@"   
+                            <materialDesign:ColorZone
+xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
+             xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+             xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+             xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+             xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+             xmlns:local=""clr-namespace:Dashboard"" Grid.Column=""1""
+Grid.Row=""{ig}"" Mode=""Custom"" FlowDirection=""RightToLeft"" Background=""White"" Foreground=""Black"" CornerRadius=""15"" Padding=""20 20"">
+                            <StackPanel>
+       
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment=""Left"" FontSize=""16"" FontWeight=""SemiBold"" Foreground=""Gray""><Bold Foreground=""Black"">{checkstatus(VARIABLE["status"])}</Bold></TextBlock>
+
+                              
+                                </DockPanel>
+                                <TextBlock HorizontalAlignment=""Left"" FontSize=""14"" FontWeight=""SemiBold"" Foreground=""DimGray"">شما در ترم {VARIABLE["term"]}مبلغ {string.Format("{0:N0}", double.Parse(VARIABLE["paidamount"].Replace(",", "")))} تومان پرداخت کردید و بدهی دیگری ندارید</TextBlock>
+
+                            </StackPanel>
+                        </materialDesign:ColorZone>");
+                      
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        //   card.MouseDown += Button_Click;
+                        container.Children.Add(card);
                         btnPardakht.IsEnabled = false;
+                    }
                     else
                     {
+                        MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
+                        StringBuilder sb = new StringBuilder();
+                        ig += 1;
+                        //Create card
+                        sb.Append($@"   
+                            <materialDesign:ColorZone
+xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
+             xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
+             xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+             xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+             xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+             xmlns:local=""clr-namespace:Dashboard"" Grid.Column=""1""
+Grid.Row=""{ig}"" Mode=""Custom"" FlowDirection=""RightToLeft"" Background=""White"" Foreground=""Black"" CornerRadius=""15"" Padding=""20 20"">
+                            <StackPanel>
+       
+                                <DockPanel>
+                                    <TextBlock HorizontalAlignment=""Left"" FontSize=""16"" FontWeight=""SemiBold"" Foreground=""Gray""><Bold Foreground=""Black"">{checkstatus(VARIABLE["status"])}</Bold></TextBlock>
+
+                              
+                                </DockPanel>
+                                <TextBlock HorizontalAlignment=""Left"" FontSize=""14"" FontWeight=""SemiBold"" Foreground=""DimGray"">شما در ترم {VARIABLE["term"]} مبلغ {string.Format("{0:N0}", double.Parse(VARIABLE["paidamount"].Replace(",", "")))}تومان پرداخت کردید و {string.Format("{0:N0}", double.Parse(VARIABLE["remainingamount"].Replace(",", "")))} مانده است و نیاز به پرداخت دارید</TextBlock>
+
+                            </StackPanel>
+                        </materialDesign:ColorZone>");
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        //   card.MouseDown += Button_Click;
+                        container.Children.Add(card);
                         this.boardzone.Background = new SolidColorBrush(Color.FromRgb(160, 29, 19));
                         txtShahrie.Text = "شما شهریه پرداخت نشده ای دارید!";
                     }

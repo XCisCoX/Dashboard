@@ -41,42 +41,21 @@
                         <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
                     </Grid>
                 </materialDesign:ColorZone>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Height="455">
-                    <Grid  x:Name="GridNotifications">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="Red" Background="Red" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="DeleteAlert" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Text="پاک کردن تمامی پیام ها"/>
+                    </WrapPanel>
+
+                </Button>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible" Height="329" Width="626">
+                    <StackPanel  x:Name="GridNotifications">
 
 
 
-                        <materialDesign:ColorZone Grid.Column="1" Margin="15 35 0 0" Mode="Custom" FlowDirection="RightToLeft" Background="White" Foreground="Black" CornerRadius="15" Padding="20 20">
-                            <StackPanel>
-                                <DockPanel>
-                                    
-                                    <TextBlock FontSize="12" FontWeight="Bold" Text="ا طلاعیه و  اعلان ها"  FlowDirection="RightToLeft"/>
 
-                                </DockPanel>
-
-                                <DockPanel Margin="0 30 0 7">
-                                    <TextBlock HorizontalAlignment="Left" FontSize="11" FontWeight="SemiBold" Foreground="Gray"><Bold Foreground="Black">نحوه ثبت نام جدید</Bold></TextBlock>
-                                    <materialDesign:RatingBar IsReadOnly="True" Max="5" Value="4" Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <materialDesign:RatingBar.ValueItemTemplate>
-                                            <DataTemplate DataType="{x:Type system:Int32}">
-                                                <Grid>
-                                                    <materialDesign:PackIcon Kind="Star" Height="15" Width="15"/>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </materialDesign:RatingBar.ValueItemTemplate>
-                                    </materialDesign:RatingBar>
-                                </DockPanel>
-                                <TextBlock HorizontalAlignment="Left" FontSize="11" FontWeight="SemiBold" Foreground="DimGray">نحوه ثبت نام در سامانه فلان اعلام شد و بعدا پیاده سازی خواهد شد.</TextBlock>
-                                <Separator Background="Black" Margin="0 15 0 0"/>
-
-
-
-                            </StackPanel>
-                        </materialDesign:ColorZone>
-                    </Grid>
+                    </StackPanel>
+                  
                 </ScrollViewer>
             </StackPanel>
 

@@ -36,16 +36,17 @@ namespace Dashboard_WPF.Views
 
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
+
             SqlConnection con =
                 new SqlConnection(
                     "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
             con.Open();
             SqlCommand userName =
                 new SqlCommand(
-                    $@"SELECT c.startDate, c.endDate, c.startTime, c.endTime, t.firstName, t.lastName, c.classLink
-FROM Classes c
-JOIN Teachers t ON c.teacherID = t.teacherID
-WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{coursename}');",
+                    $@"SELECT c.startDate, c.endDate, c.startTime, c.endTime, t.firstName, t.lastName, c.classLink, cd.stuScore
+FROM Classes c 
+JOIN Teachers t ON c.teacherID = t.teacherID JOIN ClassDetails cd on cd.classID =c.classID
+WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{coursename}')",
                     con);
             SqlDataReader srd = userName.ExecuteReader();
 
@@ -60,6 +61,7 @@ WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{
 نام استاد: {srd.GetValue(4).ToString()}
 نام خانوادگی استاد: {srd.GetValue(5).ToString()}
 لینک کلاس: {srd.GetValue(6).ToString()}
+نمره شما:{srd.GetValue(7).ToString()}
 ";
 
 

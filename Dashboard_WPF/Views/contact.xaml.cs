@@ -50,19 +50,62 @@ namespace Dashboard_WPF.Views
          
         }
 
- 
+
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            string teacherName = cbTeacher.Text;
-            string teacherId = "";
-            foreach (KeyValuePair<string, string> VARIABLE in iDictionary)
-            {
-                if (VARIABLE.Value == teacherName)
-                    teacherId = VARIABLE.Key;
-            }
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+        
+            if (mainWindow != null){
 
-            MessageBox.Show($"ID:{teacherId} name:{teacherName}\r\nموضوع:{txtSubject.Text}\r\nمتن: {txtText.Text}");
+                if (mainWindow.user_data["type"] == "2")
+                {
+
+                    string teacherName = cbTeacher.Text;
+                    string teacherId = "";
+                    foreach (KeyValuePair<string, string> VARIABLE in iDictionary)
+                    {
+                        if (VARIABLE.Value == teacherName)
+                            teacherId = VARIABLE.Key;
+                    }
+
+                    SqlConnection con =
+                        new SqlConnection(
+                            "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    con.Open();
+
+            
+
+                    if (teacherId != "0")
+                    {
+                        string s =
+                            $@"insert into stuMessages values({mainWindow.user_data["uid"]},{teacherId},N'{txtSubject.Text}',N'{txtText.Text}',GETDATE())";
+                        SqlCommand sqlCommand = new SqlCommand(s, con);
+                        try
+                        {
+                            SqlDataReader srd = sqlCommand.ExecuteReader();
+                            srd.Close();
+                            MessageBox.Show(
+                                $"پیام شما با موفقیت ارسال شد");
+                        }
+                        catch (Exception exception)
+                        {
+
+                          
+                        }
+
+                    }
+                }
+
+
+
+
+            }
+        }
+
+        private void Card_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
