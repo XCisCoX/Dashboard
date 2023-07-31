@@ -8,6 +8,7 @@
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" Height="700
              " Width="677">
+
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" Loaded="Card_Loaded">
 
         <Grid Margin="0,0,16,0">

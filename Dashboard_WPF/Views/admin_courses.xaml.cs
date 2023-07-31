@@ -53,7 +53,9 @@ namespace Dashboard_WPF.Views
             con.Open();
 
             string userInfo = $@"SELECT CONCAT(t.firstName,' ',t.lastName)
-  FROM Classes c join Teachers t on t.teacherID=c.teacherID";
+FROM Courses c 
+JOIN Teachers t ON c.teacherID = t.teacherID 
+WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{coursename}')";
 
             SqlCommand uinfCommand = new SqlCommand(userInfo, con);
             uinfCommand = new SqlCommand(userInfo, con);
@@ -65,15 +67,12 @@ namespace Dashboard_WPF.Views
              teachername= srd.GetValue(0).ToString();
             }
             srd.Close();
-            if (teachername != " ")
+            if (teachername != "")
             {
-                txtCourseName.Text = "Course : " + coursename + "          Teacher: " + teachername;
-            }
-            else
-            {
-                gridTeacher.Visibility = Visibility.Visible;
-            }
-        
+
+            
+            txtCourseName.Text = "Course : " + coursename + "          Teacher: " + teachername;
+            
             DataSet ds = new DataSet();
             SqlDataAdapter sd = new SqlDataAdapter();
 
@@ -89,6 +88,11 @@ order by c.classID", con);
             for (int i = 0; i < dgMain.Columns.Count; i++)
             {
                 dgMain.Columns[i].IsReadOnly = true;
+            }
+            }
+            else
+            {
+                gridTeacher.Visibility = Visibility.Visible;
             }
         }
 

@@ -102,7 +102,6 @@ namespace Dashboard_WPF
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-
         }
 
         private void ostadsitem_Click(object sender, RoutedEventArgs e)

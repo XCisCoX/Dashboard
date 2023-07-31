@@ -70,7 +70,7 @@ namespace Dashboard_WPF.Views
                 {
                     userName =
                         new SqlCommand(
-                            $@"select co.courseName,co.courseId from Courses co JOIN Classes c on c.courseID=co.courseID",
+                            $@"select co.courseName,co.courseId from Courses co ",
                             con);
                 }
                 else if (mainWindow.user_data["type"] == "2")
