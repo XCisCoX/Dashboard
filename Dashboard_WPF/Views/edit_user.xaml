@@ -5,68 +5,81 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Dashboard_WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" Height="700
-             " Width="677">
+             mc:Ignorable="d" Height="700" Width="677">
 
-    <materialDesign:ColorZone CornerRadius="0 15 15 0" Height="650" Background="White" Foreground="Black" VerticalAlignment="Center" x:Name="profileZone" Loaded="profileZone_Loaded">
-        <StackPanel Margin="25 12 25 0">
+    <materialDesign:ColorZone CornerRadius="20" Height="482" Background="White" Foreground="Black" x:Name="profileZone" Loaded="profileZone_Loaded" Margin="0,27,27,0">
+
+        <!-- Grid to align elements more precisely -->
+        <Grid Margin="25">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Back Button -->
             <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DarkRed" Background="#ffaf1f" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Left" Click="Button_Click">
                 <WrapPanel>
                     <materialDesign:PackIcon Kind="Backburger" VerticalAlignment="Center" Margin="0 0 10 0"/>
                     <TextBlock Text="بازگشت"/>
                 </WrapPanel>
-
             </Button>
-            <DockPanel Margin="0 12 5 0">
 
-                <TextBlock Text="پروفایل شما" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-
+            <!-- Profile Title -->
+            <DockPanel Grid.Row="1" Margin="0,4,5,0">
+                <TextBlock Text="پروفایل شما" FontSize="24" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
             </DockPanel>
-            <Ellipse Height="100" Width="100">
+
+            <!-- Avatar Image -->
+            <Ellipse Height="100" Width="100" Margin="0,12,0,6" Grid.Row="2" HorizontalAlignment="Center">
                 <Ellipse.Fill>
-                    <ImageBrush  x:Name="avatarimg" RenderOptions.BitmapScalingMode="HighQuality" ImageSource="../images/avatar.png"/>
+                    <ImageBrush x:Name="avatarimg" RenderOptions.BitmapScalingMode="HighQuality" ImageSource="../images/avatar.png"/>
                 </Ellipse.Fill>
             </Ellipse>
 
-            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="NavajoWhite" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 0" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_2">
+            <!-- Change Avatar Button -->
+            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="NavajoWhite" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="20" Margin="360,73,0,13" Width="120" HorizontalAlignment="Left" Click="Button_Click_2" Grid.Row="2">
                 <WrapPanel>
                     <materialDesign:PackIcon Kind="ImageAdd" VerticalAlignment="Center" Margin="0 0 0 0"/>
                     <TextBlock Text="تغییر عکس"/>
                 </WrapPanel>
-
             </Button>
-            <Grid>
+
+            <!-- User Details -->
+            <Grid Grid.Row="3" Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="نام و نام خانوادگی" FlowDirection="RightToLeft"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  x:Name="txtfullname" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
-                <TextBox  materialDesign:HintAssist.Hint="شماره همراه" Grid.Row="1" Grid.Column="1"  FlowDirection="RightToLeft" x:Name="txtPhoneNumber" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
-                <TextBlock materialDesign:HintAssist.Hint="نام کاربری" Grid.Row="2" Grid.Column="1"  FlowDirection="RightToLeft" x:Name="txtUserName" FontSize="12" FontWeight="Bold" Margin="0 15 0 3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
-                <Grid Grid.Row="2" Grid.Column="0">
-                    <PasswordBox x:Name="txtpass" materialDesign:HintAssist.Hint="پسورد" FlowDirection="RightToLeft" materialDesign:PasswordBoxAssist.PasswordMaskedIcon="Show"  Height="30" Width="230" HorizontalAlignment="Center" Margin="0,6,0,7"/>
+
+                <TextBlock Text="نام و نام خانوادگی" FlowDirection="RightToLeft"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  x:Name="txtfullname" FontSize="16" FontWeight="Bold" Margin="0,0,0,6" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+                <TextBox  materialDesign:HintAssist.Hint="شماره همراه" Grid.Row="1" Grid.Column="1"  FlowDirection="RightToLeft" x:Name="txtPhoneNumber" FontSize="12" FontWeight="Bold" Margin="0,7,0,3" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
+                <TextBlock materialDesign:HintAssist.Hint="نام کاربری" Grid.Row="2"  FlowDirection="RightToLeft" x:Name="txtUserName" FontSize="12" FontWeight="Bold" Margin="2,13,0,5" TextAlignment="Center" HorizontalAlignment="Center" Foreground="Black" Width="230"/>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <PasswordBox x:Name="txtpass" materialDesign:HintAssist.Hint="پسورد" FlowDirection="RightToLeft" materialDesign:PasswordBoxAssist.PasswordMaskedIcon="Show"  Height="30" Width="230" HorizontalAlignment="Center"  Margin="0,6,0,7"/>
                     <TextBox x:Name="txtpassrev" Visibility="Hidden" materialDesign:HintAssist.Hint="پسورد"  FlowDirection="RightToLeft" Height="30" Width="230" HorizontalAlignment="Center" Margin="0,6,0,7"/>
 
-                    <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="20" Height="40" Width="23" HorizontalAlignment="Left" x:Name="cbpass" Click="CheckBox_Click" Margin="7,2,0,1"></CheckBox>
+                    <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="20" Height="40" Width="23" HorizontalAlignment="Left" x:Name="cbpass" Click="CheckBox_Click" Margin="72,2,0,2"></CheckBox>
                 </Grid>
-                <TextBox Grid.Row="1" Grid.Column="0"  materialDesign:HintAssist.Hint="آدرس ایمیل" x:Name="txtemail"  FontSize="11" FontWeight="SemiBold" TextAlignment="Center"  Margin="0 15 0 3" HorizontalAlignment="Center" Foreground="Gray" Width="230"/>
-
+                <TextBox  materialDesign:HintAssist.Hint="آدرس ایمیل" x:Name="txtemail"  FontSize="12" FontWeight="SemiBold" TextAlignment="Center"  Margin="0,8,0,2" HorizontalAlignment="Center" Foreground="Black" Width="230" Grid.Row="1"/>
+                <Button Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0,20,0,0" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_1" Grid.Row="4">
+                    <WrapPanel>
+                        <materialDesign:PackIcon Kind="ContentSaveAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Text="ذخیره"/>
+                    </WrapPanel>
+                </Button>
             </Grid>
 
-            <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click_1">
-                <WrapPanel>
-                    <materialDesign:PackIcon Kind="ContentSaveAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                    <TextBlock Text="ذخیره"/>
-                </WrapPanel>
+            <!-- Save Button -->
 
-            </Button>
-
-            <DockPanel/>
-        </StackPanel>
+        </Grid>
     </materialDesign:ColorZone>
 </UserControl>

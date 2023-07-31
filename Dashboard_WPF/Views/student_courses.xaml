@@ -5,39 +5,53 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Dashboard_WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
              mc:Ignorable="d" Height="700
              " Width="677">
     <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" Loaded="Card_Loaded">
 
 
-        <Grid Margin="0,0,16,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="229*"/>
-                <RowDefinition Height="100*"/>
-                <RowDefinition Height="329*"/>
-            </Grid.RowDefinitions>
-            <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
+        <materialDesign:Card Padding="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="671" Height="700" FlowDirection="RightToLeft" Margin="6,0,0,0">
 
-                <DockPanel Margin="0 12 5 0">
-               
+            <StackPanel Margin="60,0,0,0">
+
+                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/Views/class.png" Height="260" Width="257"/>
+                <DockPanel>
+                <TextBlock Text="نام درس: " Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding CourseName}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                <TextBlock Text="تاریخ شروع:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding StartDate}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="تاریخ اتمام:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding EndDate}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="ساعت شروع:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding StartTime}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="ساعت پایان:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding EndTime}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="نام استاد:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding TeacherName}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                </DockPanel>
+                <DockPanel>
+                    <TextBlock Text="نمره:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                    <TextBlock Text="{Binding Score}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
                 </DockPanel>
 
-            
-              
+                <TextBlock Text="لینک ورود کلاس:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                <Button materialDesign:ButtonAssist.CornerRadius="20"  Width="300" Content="ورود" Click="Button_Click" Tag="{Binding ClassLink}" />
+               
 
-
-
-                <TextBlock Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-                <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
-                    <Grid x:Name="test">
-                        <TextBlock x:Name="txtMainCourse" Text="" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-
-
-                    </Grid>
-                </ScrollViewer>
             </StackPanel>
+        </materialDesign:Card>
 
-        </Grid>
 
 
     </materialDesign:Card>

@@ -29,10 +29,9 @@
 
 
 
+                <TextBlock x:Name="txtCourseName" Text="لیست دانشجو ها" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
 
-                <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
-
-                <Grid x:Name="test" Height="402" Width="629">
+<Grid x:Name="test" Height="402" Width="629">
                         <DataGrid x:Name="dgMain"  CanUserReorderColumns="True"  >
                             <DataGrid.Columns>
 

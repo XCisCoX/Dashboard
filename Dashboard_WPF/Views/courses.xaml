@@ -18,8 +18,7 @@
             </Grid.RowDefinitions>
             <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
                 <DockPanel Margin="0 12 5 0">
-                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="Dashboard"/>
-                    
+
                     <TextBlock x:Name="txtDate" Text="" Foreground="SlateGray" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Right" DockPanel.Dock="Right" Margin="0 0 20 0"/>
                 </DockPanel>
 
@@ -32,19 +31,19 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="1">
-                            <TextBlock Text="خوش آمدی!" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
-                            <TextBlock Text="" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold" Height="9"/>
+                            <TextBlock Text="کلاس های شما" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
+          
                             <TextBlock Text=" درس های زیر برای شماست" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
                             <TextBlock Text="روی هر کدوم کلیک کنید تا وضعیت درسیتو ببینی" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="11" FontWeight="SemiBold" Height="19"/>
                         </StackPanel>
 
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="130" Width="130" Margin="0,-92,55,-18"/>
                     </Grid>
                 </materialDesign:ColorZone>
 
 
 
-                <TextBlock Text="Your Courses" HorizontalAlignment="Left" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+                <TextBlock Text="کلاس های شما" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
                 <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"  Height="374">
                     <Grid x:Name="container">
 

@@ -33,10 +33,10 @@
                 <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
                 <Grid x:Name="gridTeacher" Visibility="Collapsed">
                     <ComboBox x:Name="cbteachers" HorizontalAlignment="Center" materialDesign:HintAssist.Hint=" استاد مورد نظر خود را انتخاب کنید" Margin="0 0 0 10"/>
-                    <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="472,18,0,18" Width="auto" Height="35" HorizontalAlignment="Left" >
+                    <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="DodgerBlue" Background="LightBlue" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="472,18,0,18" Width="auto" Height="35" HorizontalAlignment="Left" Click="Button_Click_1" >
                         <WrapPanel>
                             <materialDesign:PackIcon Kind="ContentSaveAll" VerticalAlignment="Center" Margin="0 0 10 0"/>
-                            <TextBlock Text="ذخیره"/>
+                            <TextBlock Text="قرار دادن استاد"/>
                         </WrapPanel>
 
                     </Button>

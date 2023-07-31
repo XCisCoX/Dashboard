@@ -115,7 +115,7 @@ where teacherID= '{mainWindow.user_data["uid"]}'";
                 {
                     mainWindow.imgavatar.ImageSource = new BitmapImage(new Uri(mainWindow.user_data["avatar"]));
 
-                    MessageBox.Show("اطلاعات با موفقیت در ذخیره شد", "پیام",
+                    MessageBox.Show("اطلاعات با موفقیت  ذخیره شد", "پیام",
                         MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else

@@ -19,11 +19,10 @@
             <StackPanel Margin="10,0,10,0" Grid.RowSpan="3">
 
                 <DockPanel Margin="0 12 5 0">
-                    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Text="داشبورد"/>
-                
-                   </DockPanel>
 
-                <materialDesign:ColorZone Mode="Custom" Background="MistyRose" Foreground="LightSalmon" CornerRadius="15" Padding="40 20" Margin="0 35 0 0">
+                </DockPanel>
+
+                <materialDesign:ColorZone Mode="Custom" Background="#d0ffd0" Foreground="Black" CornerRadius="15" Padding="40 20" Margin="0 35 0 0">
 
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -33,15 +32,14 @@
 
                         <StackPanel Grid.Column="1">
                             <TextBlock Text="خوش آمدی!" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold"/>
-                            <TextBlock Text="" FlowDirection="RightToLeft" FontSize="15" FontWeight="Bold" Height="9"/>
-                            <TextBlock Text=" با انتخاب روی پیام های زیر میتونی اون ها رو " FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
-                            <TextBlock Text="کامل ببینی " FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
+                            <TextBlock Text=" در پایین پیام های شما قرار خواهد گرفت" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
+                            <TextBlock Text="از سمت راست ایتم ها رو امتحان کن" FlowDirection="RightToLeft" Foreground="SlateGray" FontSize="13" FontWeight="SemiBold" Height="19"/>
                         </StackPanel>
 
-                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/images\welcome.png" HorizontalAlignment="Right" Height="190" Width="190" Margin="0,-92,55,-18"/>
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/Views/college.png" HorizontalAlignment="Left" Height="150" Width="160" Margin="27,-68,0,-12"/>
                     </Grid>
                 </materialDesign:ColorZone>
-                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="Red" Background="Red" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click">
+                <Button Style="{StaticResource MaterialDesignFlatButton}" materialDesign:RippleAssist.Feedback="Red" Background="#ffcfcf" Foreground="Black" materialDesign:ButtonAssist.CornerRadius="6" Margin="0 15 0 20" Width="auto" Height="35" HorizontalAlignment="Center" Click="Button_Click">
                     <WrapPanel>
                         <materialDesign:PackIcon Kind="DeleteAlert" VerticalAlignment="Center" Margin="0 0 10 0"/>
                         <TextBlock Text="پاک کردن تمامی پیام ها"/>
@@ -55,7 +53,7 @@
 
 
                     </StackPanel>
-                  
+
                 </ScrollViewer>
             </StackPanel>
 

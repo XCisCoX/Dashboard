@@ -30,7 +30,7 @@
 
 
 
-                <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Right" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
+                <TextBlock x:Name="txtCourseName" Text="درس شما" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold" Margin="0 30 0 25"/>
 
                 <Grid x:Name="test" Height="374">
                         <DataGrid x:Name="dgMain" CanUserAddRows="False"  CanUserReorderColumns="False" RowEditEnding="dgMain_RowEditEnding" >

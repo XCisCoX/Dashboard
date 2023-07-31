@@ -58,13 +58,22 @@ namespace Dashboard_WPF.Views
             SqlCommand uinfCommand = new SqlCommand(userInfo, con);
             uinfCommand = new SqlCommand(userInfo, con);
             SqlDataReader srd = uinfCommand.ExecuteReader();
+            string teachername = "";
             while (srd.Read())
             {
-                txtCourseName.Text = "Course : "+coursename+"          Teacher: "+srd.GetValue(0).ToString();
-             
+              
+             teachername= srd.GetValue(0).ToString();
             }
-
             srd.Close();
+            if (teachername != " ")
+            {
+                txtCourseName.Text = "Course : " + coursename + "          Teacher: " + teachername;
+            }
+            else
+            {
+                gridTeacher.Visibility = Visibility.Visible;
+            }
+        
             DataSet ds = new DataSet();
             SqlDataAdapter sd = new SqlDataAdapter();
 
@@ -134,6 +143,20 @@ and  classID=(select co.classID from Classes co where co.courseID=(select c.cour
                 MessageBox.Show("مشکلی در ذخیره سازی اطلاعات وجود دارد!", "پیام",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+           string tcher=  cbteachers.Text;
+           bool success = true;
+           if (success)
+               MessageBox.Show("استاد برای درس قرار داده شد", "پیام",
+                   MessageBoxButton.OK, MessageBoxImage.Information);
+           else
+           {
+               MessageBox.Show("مشکلی در قرار دادن استاد وجود داشت", "پیام",
+                   MessageBoxButton.OK, MessageBoxImage.Error);
+           }
         }
     }
 }

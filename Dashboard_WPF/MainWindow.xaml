@@ -21,7 +21,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" UniformCornerRadius="15" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4" >
+    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" UniformCornerRadius="15" Margin="25" materialDesign:ShadowAssist.ShadowDepth="Depth4" x:Name="maincard" >
         <Grid>
 
             <Grid.RowDefinitions>
@@ -31,10 +31,10 @@
             <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="Red" Foreground="Red" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right" Click="btm_Exit">
                 <materialDesign:PackIcon Kind="Close"/>
             </Button>
-            <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="Red" Foreground="Black" Margin="0 0 50 0" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right"  Click="Button_Click_3" >
+            <Button Style="{StaticResource MaterialDesignIconButton}" materialDesign:RippleAssist.Feedback="Red" Foreground="White" Margin="0 0 50 0" materialDesign:ButtonAssist.CornerRadius="6" Height="40" Width="40" DockPanel.Dock="Left" HorizontalAlignment="Right"  Click="Button_Click_3" >
                 <materialDesign:PackIcon Kind="Minimize"/>
             </Button>
-            <TextBlock x:Name="txtDate" Text="" Foreground="SlateGray" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" DockPanel.Dock="Right" Margin="29 0 20 0"/>
+            <TextBlock x:Name="txtDate" Text="" Foreground="White" FontSize="12" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Left" DockPanel.Dock="Right" Margin="29 0 20 0"/>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

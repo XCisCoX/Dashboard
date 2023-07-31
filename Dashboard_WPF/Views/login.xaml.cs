@@ -14,11 +14,13 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Dashboard_WPF.ViewModels;
+using Newtonsoft.Json;
 
 namespace Dashboard_WPF.Views
 {
@@ -31,6 +33,7 @@ namespace Dashboard_WPF.Views
     {
         public login()
         {
+
             InitializeComponent();
         }
 
@@ -46,7 +49,7 @@ namespace Dashboard_WPF.Views
       ,[userPass]
       ,[accTyp]
       ,[userAvatar]
-  FROM [CollegeProject].[dbo].[Accounts] where userName='{UsernameBox.Text}' and userPass='{txtpass.Password}'
+  FROM [CollegeProject].[dbo].[Accounts] where userName='{txtUsername.Text}' and userPass='{txtpass.Password}'
 ";
                 SqlConnection con = new SqlConnection("Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
                 con.Open();
@@ -188,6 +191,20 @@ namespace Dashboard_WPF.Views
                     }
                     mainWindow.dashboardZone.Visibility = Visibility.Visible;
                     mainWindow.profileZone.Visibility = Visibility.Visible;
+                    if (ckrememeberme.IsChecked == true)
+                    {
+                        Dictionary<string, string> _data = new Dictionary<string, string>();
+                        _data["username"] = txtUsername.Text;
+                        _data["password"] = txtpass.Password;
+
+                        string json = JsonConvert.SerializeObject(_data);
+                        File.WriteAllText(Environment.CurrentDirectory + @"setting.ini", json);
+                    }
+                    else
+                    {
+                        if (File.Exists(Environment.CurrentDirectory + @"setting.ini"))
+                            File.Delete(Environment.CurrentDirectory + @"setting.ini");
+                    }
                     mainWindow.DataContext = new HomeModel();
                     con.Close();
                    
@@ -202,27 +219,35 @@ namespace Dashboard_WPF.Views
             
         }
 
-        private void Card_Loaded(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.maincard.Background = new SolidColorBrush(Color.FromRgb(32, 32, 32));
+                string settingfile=Environment.CurrentDirectory + @"setting.ini";
+                if (File.Exists(settingfile))
+                {
+                    string readfile = File.ReadAllText(settingfile);
+                    try
+                    {
+                        var jsonval = JsonConvert.DeserializeObject<Dictionary<string, string>>(readfile);
+                        txtpass.Password = jsonval["password"];
+                        txtUsername.Text = jsonval["username"];
+                        ckrememeberme.IsChecked = true;
+                    }
+                    catch (Exception )
+                    {
+                   
+                    }
+                  
+                }
+            }
         }
 
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        private void ckrememeberme_Click(object sender, RoutedEventArgs e)
         {
-            if (cbpass.IsChecked == true)
-            {
-                txtpassrev.Text = txtpass.Password;
-                txtpass.Visibility = Visibility.Hidden;
-                txtpassrev.Visibility = Visibility.Visible;
-                txtpassrev.Focus();
-            }
-            else
-            {
-                txtpass.Password = txtpassrev.Text;
-                txtpass.Visibility = Visibility.Visible;
-                txtpassrev.Visibility = Visibility.Hidden;
-                txtpass.Focus();
-            }
+          
         }
     }
 }

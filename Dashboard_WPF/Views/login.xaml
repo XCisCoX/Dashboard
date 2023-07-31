@@ -5,21 +5,108 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Dashboard_WPF"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d" Height="700
-             " Width="677">
+             mc:Ignorable="d" Height="700" Width="677" Loaded="UserControl_Loaded">
 
-    <materialDesign:Card Background="{DynamicResource MaterialDesignPaper}" FlowDirection="RightToLeft" Loaded="Card_Loaded" >
-        <StackPanel Margin="148,7,101,61">
-            <TextBlock Text="شما نیاز دارید که وارد اکانت خود شوید" FlowDirection="RightToLeft" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
-            <TextBox materialDesign:HintAssist.Hint="نام کاربری" Margin="0 0 0 70" x:Name="UsernameBox"/>
-            <Grid>
-                <PasswordBox x:Name="txtpass" materialDesign:HintAssist.Hint="پسورد" materialDesign:PasswordBoxAssist.PasswordMaskedIcon="Show"  Height="30" Width="374" HorizontalAlignment="Left"/>
-                <TextBox x:Name="txtpassrev" Visibility="Hidden" materialDesign:HintAssist.Hint="پسورد"  Height="30" Width="374" HorizontalAlignment="Left"/>
+    <UserControl.Resources>
+        <!-- Your fonts and other resources go here -->
+    </UserControl.Resources>
 
-                <CheckBox materialDesign:CheckBoxAssist.CheckBoxSize="40" Height="40" Width="40" HorizontalAlignment="Right" x:Name="cbpass" Click="CheckBox_Click"></CheckBox>
-            </Grid>
-            <Button Content="ورود" HorizontalAlignment="Center" materialDesign:ButtonAssist.CornerRadius="5"  Width="520" Click="LoginButton_Click" Height="48" Margin="0 100 0 0"/>
-            <TextBlock x:Name="txtinfo" Text="" FlowDirection="RightToLeft"  Foreground="Red" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"  Margin="0 0 0 200"/>
-        </StackPanel>
-    </materialDesign:Card>
+    <!-- Background -->
+    <Grid Background="White" 
+          >
+
+        <!-- Blurred Overlay -->
+        <Grid Background="#202020" />
+
+        <!-- Form Container -->
+        <Border Background="White" 
+                Opacity="0.9"
+                CornerRadius="10" 
+                Width="400" 
+                Margin="87,20,190,176">
+
+            <StackPanel Margin="40">
+
+                <!-- Avatar -->
+                <Border Width="80" 
+                        Height="80" 
+                        Background="White"
+                        CornerRadius="40"
+                        HorizontalAlignment="Center">
+                    <Image Source="/images/avatar.png" 
+                           Width="80"
+                           Height="80"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+                </Border>
+
+                <!-- Heading -->
+                <TextBlock Text="شما نیاز دارید که وارد اکانت خود شوید"
+                           HorizontalAlignment="Center"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Margin="0,20,0,30"  />
+
+                <!-- Username Input -->
+                <TextBox materialDesign:HintAssist.Hint="نام کاربری"
+                         FontSize="16"
+                         BorderThickness="0 0 0 1"
+                         BorderBrush="#40a7e3"
+                         Margin="0 0 0 20"
+                         HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Right" 
+                         x:Name="txtUsername" />
+
+                <!-- Password Input -->
+                <PasswordBox x:Name="txtpass"
+                             materialDesign:HintAssist.Hint="پسورد"
+                             FontSize="16"
+                             BorderThickness="0 0 0 1"
+                             BorderBrush="#40a7e3"
+                             Margin="0 0 0 20"
+                             HorizontalAlignment="Stretch"
+                             HorizontalContentAlignment="Right"  />
+
+                <!-- Remember Me -->
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Center"
+                            Margin="0 20">
+                    <CheckBox VerticalAlignment="Center" 
+                              IsChecked="False" x:Name="ckrememeberme" Click="ckrememeberme_Click" />
+                    <TextBlock Text="مرا به خاطر بسپار"
+                               FontSize="14"
+                               Foreground="#40a7e3" />
+
+                </StackPanel>
+                <TextBlock x:Name="txtinfo"
+                           Text=""
+                           FlowDirection="RightToLeft"
+                           Foreground="Red"
+                           HorizontalAlignment="Center"
+                           FontSize="15"
+                           FontWeight="Bold"
+                           Margin="0 0 0 0" />
+                <!-- Login Button -->
+                <Button x:Name="Login" Content="ورود"
+                        HorizontalAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Width="100"
+                        Height="35"
+                        Margin="0 5"
+                        Background="#40a7e3"
+                        Foreground="White"
+                        FontSize="16"
+                        FontWeight="Bold" Click="LoginButton_Click" />
+
+                <!-- OR Separator -->
+               
+
+                
+
+
+            </StackPanel>
+
+        </Border>
+
+    </Grid>
 </UserControl>

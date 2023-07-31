@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,19 @@ namespace Dashboard_WPF.Views
     /// <summary>
     /// Interaction logic for courses.xaml
     /// </summary>
-    public partial class student_courses : UserControl
+    ///
+     public class ClassDetails
+    {
+    public string CourseName { get; set; }
+    public string StartDate { get; set; }
+    public string EndDate { get; set; }
+    public string StartTime { get; set; }
+    public string EndTime { get; set; }
+    public string TeacherName { get; set; }
+    public string ClassLink { get; set; }
+    public string Score { get; set; }
+    }
+public partial class student_courses : UserControl
     {
         private string coursename = "";
 
@@ -33,7 +46,7 @@ namespace Dashboard_WPF.Views
             this.coursename = cName;
             InitializeComponent();
         }
-
+       
         private void Card_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -54,15 +67,19 @@ WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{
 
             while (srd.Read())
             {
-                txtMainCourse.Text = $@"تاریخ شروع کلاس: {srd.GetValue(0).ToString()}
-تاریخ پایان کلاس: {srd.GetValue(1).ToString()}
-ساعت شروع: {srd.GetValue(2).ToString()}
-ساعت پایان: {srd.GetValue(3).ToString()}
-نام استاد: {srd.GetValue(4).ToString()}
-نام خانوادگی استاد: {srd.GetValue(5).ToString()}
-لینک کلاس: {srd.GetValue(6).ToString()}
-نمره شما:{srd.GetValue(7).ToString()}
-";
+                var classDetails = new ClassDetails
+                {
+                    CourseName = coursename,
+                    StartDate = srd.GetValue(0).ToString(),
+                    EndDate = srd.GetValue(1).ToString(),
+                    StartTime = srd.GetValue(2).ToString(),
+                    EndTime = srd.GetValue(3).ToString(),
+                    TeacherName = srd.GetValue(4).ToString() +" "+ srd.GetValue(5).ToString(),
+                    ClassLink = srd.GetValue(6).ToString(),
+                    Score = srd.GetValue(7).ToString()
+                };
+                DataContext = classDetails;
+     
 
 
             }
@@ -71,7 +88,23 @@ WHERE c.courseID IN (SELECT co.courseID FROM Courses co WHERE co.courseName = '{
 
 
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string url = (sender as Button).Tag as string;
+            OpenLink(url);
+        }
 
+        private void OpenLink(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error opening link: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
 
