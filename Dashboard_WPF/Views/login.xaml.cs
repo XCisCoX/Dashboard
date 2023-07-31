@@ -198,12 +198,12 @@ namespace Dashboard_WPF.Views
                         _data["password"] = txtpass.Password;
 
                         string json = JsonConvert.SerializeObject(_data);
-                        File.WriteAllText(Environment.CurrentDirectory + @"setting.ini", json);
+                        File.WriteAllText(Environment.CurrentDirectory + @"\\setting.ini", json);
                     }
                     else
                     {
-                        if (File.Exists(Environment.CurrentDirectory + @"setting.ini"))
-                            File.Delete(Environment.CurrentDirectory + @"setting.ini");
+                        if (File.Exists(Environment.CurrentDirectory + @"\\setting.ini"))
+                            File.Delete(Environment.CurrentDirectory + @"\\setting.ini");
                     }
                     mainWindow.DataContext = new HomeModel();
                     con.Close();
@@ -225,7 +225,7 @@ namespace Dashboard_WPF.Views
             if (mainWindow != null)
             {
                 mainWindow.maincard.Background = new SolidColorBrush(Color.FromRgb(32, 32, 32));
-                string settingfile=Environment.CurrentDirectory + @"setting.ini";
+                string settingfile=Environment.CurrentDirectory + @"\\setting.ini";
                 if (File.Exists(settingfile))
                 {
                     string readfile = File.ReadAllText(settingfile);
