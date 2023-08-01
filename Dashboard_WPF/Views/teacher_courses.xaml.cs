@@ -49,7 +49,7 @@ namespace Dashboard_WPF.Views
             txtCourseName.Text= coursename;
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
             DataSet ds = new DataSet();
             SqlDataAdapter sd = new SqlDataAdapter();
@@ -84,7 +84,7 @@ order by c.classID", con);
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
 
             bool success = true;

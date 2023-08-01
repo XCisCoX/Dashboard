@@ -52,7 +52,7 @@ public partial class student_courses : UserControl
 
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
             SqlCommand userName =
                 new SqlCommand(

@@ -49,7 +49,7 @@ namespace Dashboard_WPF.Views
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
             DataSet ds = new DataSet();
             SqlDataAdapter sd = new SqlDataAdapter();
@@ -86,7 +86,7 @@ namespace Dashboard_WPF.Views
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
 
             bool success = true;
@@ -201,7 +201,7 @@ values (@tid,'{teachersDictionary["username"]}','{teachersDictionary["password"]
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
 
             string s = $@"delete from Teachers where teacherID={txtDelTeacher.Text}

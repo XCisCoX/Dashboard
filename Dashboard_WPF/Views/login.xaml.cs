@@ -51,7 +51,7 @@ namespace Dashboard_WPF.Views
       ,[userAvatar]
   FROM [CollegeProject].[dbo].[Accounts] where userName='{txtUsername.Text}' and userPass='{txtpass.Password}'
 ";
-                SqlConnection con = new SqlConnection("Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                SqlConnection con = new SqlConnection(connectionclass.connectionstring);
                 con.Open();
                 SqlCommand sqlCommand = new SqlCommand(s, con);
                 SqlDataReader srd = sqlCommand.ExecuteReader();
@@ -106,6 +106,7 @@ namespace Dashboard_WPF.Views
                             mainWindow.shahrieitem.Visibility = Visibility.Collapsed;
                             mainWindow.ostadsitem.Visibility = Visibility.Visible;
                             mainWindow.studentitem.Visibility= Visibility.Visible;
+                            mainWindow.contactitem.Visibility = Visibility.Collapsed;
                             break;
 
 

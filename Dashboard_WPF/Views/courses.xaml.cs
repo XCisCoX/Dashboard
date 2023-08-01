@@ -57,7 +57,7 @@ namespace Dashboard_WPF.Views
             {
                 SqlConnection con =
                     new SqlConnection(
-                        "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                        connectionclass.connectionstring);
                 con.Open();
                 if (mainWindow.user_data["type"] == "3")
                 {

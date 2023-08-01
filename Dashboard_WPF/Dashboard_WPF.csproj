@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="connectionstring.cs" />
     <Compile Include="ViewModels\HomeModel.cs" />
     <Compile Include="Views\courseadmin.xaml.cs">
       <DependentUpon>courseadmin.xaml</DependentUpon>

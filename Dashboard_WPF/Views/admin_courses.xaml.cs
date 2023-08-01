@@ -49,7 +49,7 @@ namespace Dashboard_WPF.Views
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
 
             string userInfo = $@"SELECT CONCAT(t.firstName,' ',t.lastName)
@@ -89,6 +89,7 @@ order by c.classID", con);
             {
                 dgMain.Columns[i].IsReadOnly = true;
             }
+
             }
             else
             {
@@ -107,7 +108,7 @@ order by c.classID", con);
         {
             SqlConnection con =
                 new SqlConnection(
-                    "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                    connectionclass.connectionstring);
             con.Open();
 
             bool success = true;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -37,35 +38,52 @@ namespace Dashboard_WPF.Views
             {
                 SqlConnection con =
                     new SqlConnection(
-                        "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                        connectionclass.connectionstring);
                 con.Open();
-                SqlCommand userName =
-                    new SqlCommand(
-                        $"SELECT  sm.subject  ,sm.text ,sm.sentTime  ,CONCAT(st.firstname,' ',st.lastName) FROM stuMessages sm join Teachers t on t.teacherID=sm.recieverID join Students st on st.studentID=sm.senderID where  recieverID={mainWindow.user_data["uid"]}",
-                        con);
-                SqlDataReader srd = userName.ExecuteReader();
-                int ig = 0;
-
-                List<Dictionary<string, string>> studList = new List<Dictionary<string, string>>();
-                while (srd.Read())
+                string consrd = "";
+                switch (mainWindow.user_data["type"])
                 {
-                    Dictionary<string, string> s = new Dictionary<string, string>();
-                    s["subject"] = srd.GetValue(0).ToString();
-                    s["text"] = srd.GetValue(1).ToString();
-                    s["time"] = srd.GetValue(2).ToString();
-                    s["sender"] = srd.GetValue(3).ToString();
-                    studList.Add(s);
+                    case "2":
+                        consrd =
+                            $"SELECT  sm.subject  ,sm.text ,sm.sentTime  ,CONCAT(st.firstname,' ',st.lastName) FROM stuMessages sm join Students t on t.studentID=sm.recieverID join Teachers st on st.teacherID=sm.senderID where  recieverID={mainWindow.user_data["uid"]}";
 
+                        break;
+                    case "3":
+                        consrd =
+                            $"SELECT  sm.subject  ,sm.text ,sm.sentTime  ,CONCAT(st.firstname,' ',st.lastName) FROM stuMessages sm join Teachers t on t.teacherID=sm.recieverID join Students st on st.studentID=sm.senderID where  recieverID={mainWindow.user_data["uid"]}";
 
+                        break;
+                    case "1":
+                        break;
                 }
 
-                foreach (var VARIABLE in studList)
+                SqlCommand userName =
+                    new SqlCommand(
+                        consrd,
+                        con);
+                try
                 {
-                    MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
-                    StringBuilder sb = new StringBuilder();
-                    ig += 1;
-                    //Create card
-                    sb.Append($@"   
+                    SqlDataReader srd = userName.ExecuteReader();
+                    int ig = 0;
+
+                    List<Dictionary<string, string>> studList = new List<Dictionary<string, string>>();
+                    while (srd.Read())
+                    {
+                        Dictionary<string, string> s = new Dictionary<string, string>();
+                        s["subject"] = srd.GetValue(0).ToString();
+                        s["text"] = srd.GetValue(1).ToString();
+                        s["time"] = srd.GetValue(2).ToString();
+                        s["sender"] = srd.GetValue(3).ToString();
+                        studList.Add(s);
+                    }
+
+                    foreach (var VARIABLE in studList)
+                    {
+                        MaterialDesignThemes.Wpf.ColorZone card = new MaterialDesignThemes.Wpf.ColorZone();
+                        StringBuilder sb = new StringBuilder();
+                        ig += 1;
+                        //Create card
+                        sb.Append($@"   
                             <materialDesign:ColorZone
 xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes"" 
              xmlns=""http://schemas.microsoft.com/winfx/2006/xaml/presentation""
@@ -93,9 +111,14 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes""
                           
                          </materialDesign:ColorZone>
                         </materialDesign:ColorZone>");
-                    card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
-                    //   card.MouseDown += Button_Click;
-                    GridNotifications.Children.Add(card);
+                        card = (MaterialDesignThemes.Wpf.ColorZone)XamlReader.Parse(sb.ToString());
+                        //   card.MouseDown += Button_Click;
+                        GridNotifications.Children.Add(card);
+                    }
+                }
+                catch
+                {
+
                 }
             }
 
@@ -108,7 +131,7 @@ xmlns:materialDesign=""http://materialdesigninxaml.net/winfx/xaml/themes""
             {
                 SqlConnection con =
                     new SqlConnection(
-                        "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                        connectionclass.connectionstring);
                 con.Open();
                 SqlCommand userName =
                     new SqlCommand(

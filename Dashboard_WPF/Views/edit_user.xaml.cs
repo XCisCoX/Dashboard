@@ -53,7 +53,7 @@ namespace Dashboard_WPF.Views
             {
                 SqlConnection con =
                     new SqlConnection(
-                        "Data Source=DESKTOP-G8PIQ1K;Initial Catalog=CollegeProject;Integrated Security=True");
+                        connectionclass.connectionstring);
                 con.Open();
                 if(cbpass.IsChecked==false)
                     mainWindow.user_data["password"] = txtpass.Password;
